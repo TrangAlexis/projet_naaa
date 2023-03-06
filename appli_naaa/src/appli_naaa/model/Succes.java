@@ -2,6 +2,8 @@ package appli_naaa.model;
 
 import java.util.Objects;
 
+//com
+
 public class Succes {
 	private String idSucces;
 	private String nomSucces;
