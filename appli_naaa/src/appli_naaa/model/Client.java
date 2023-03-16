@@ -3,33 +3,36 @@ package appli_naaa.model;
 import java.util.Objects;
 
 public class Client {
-	private String idClient;
+	private Integer idClient;
 	private String statut;
 	private String nom;
 	private String prenom;
-	private String alias;
-	private String nomCompte;
+	private String Compte;
 	private String motDePasse;
 	private Integer pointsDeSucces;
+	private String e_mail;
+	private Integer idSucces;
 	
-	public Client(String idClient, String statut, String nom, String prenom, String alias, String nomCompte,
-			String motDePasse, Integer pointsDeSucces) {
+	
+	public Client(Integer idClient, String statut, String nom, String prenom, String Compte,
+			String motDePasse, Integer pointsDeSucces, String e_mail, Integer idSucces) {
 		super();
 		this.idClient = idClient;
 		this.statut = statut;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.alias = alias;
-		this.nomCompte = nomCompte;
+		this.Compte = Compte;
 		this.motDePasse = motDePasse;
 		this.pointsDeSucces = pointsDeSucces;
+		this.e_mail = e_mail;
+		this.idSucces = idSucces;
 	}
 
-	public String getIdClient() {
+	public Integer getIdClient() {
 		return idClient;
 	}
 
-	public void setIdClient(String idClient) {
+	public void setIdClient(Integer idClient) {
 		this.idClient = idClient;
 	}
 
@@ -57,20 +60,21 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public String getAlias() {
-		return alias;
+
+	public String getCompte() {
+		return Compte;
 	}
 
-	public void setAlias(String alias) {
-		this.alias = alias;
+	public void setCompte(String compte) {
+		Compte = compte;
 	}
 
-	public String getNomCompte() {
-		return nomCompte;
+	public String getE_mail() {
+		return e_mail;
 	}
 
-	public void setNomCompte(String nomCompte) {
-		this.nomCompte = nomCompte;
+	public void setE_mail(String e_mail) {
+		this.e_mail = e_mail;
 	}
 
 	public String getMotDePasse() {
@@ -105,6 +109,15 @@ public class Client {
 		Client other = (Client) obj;
 		return Objects.equals(idClient, other.idClient);
 	}
+
+	public Integer getIdSucces() {
+		return idSucces;
+	}
+
+	public void setIdSucces(Integer idSucces) {
+		this.idSucces = idSucces;
+	}
+	
 	
 	
 }

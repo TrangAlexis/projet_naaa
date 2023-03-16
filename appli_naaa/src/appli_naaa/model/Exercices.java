@@ -3,31 +3,54 @@ package appli_naaa.model;
 import java.util.Objects;
 
 public class Exercices {
-	private String idExercices;
-	private String nomExercie;
+	private Integer idExercices;
+	private String nomExercice;
 	private String description;
+	private Integer repetition = 0;
 	
-	public Exercices(String idExercices, String nomExercie, String description) {
+	public Exercices(Integer idExercices, String nomExercie, String description) {
 		super();
 		this.idExercices = idExercices;
-		this.nomExercie = nomExercie;
+		this.nomExercice = nomExercie;
 		this.description = description;
 	}
 
-	public String getIdExercices() {
+	
+	
+	public Exercices(Integer idExercices, String nomExercice, String description, Integer repetition) {
+		super();
+		this.idExercices = idExercices;
+		this.nomExercice = nomExercice;
+		this.description = description;
+		this.repetition = repetition;
+	}
+
+
+	public Integer getRepetition() {
+		return repetition;
+	}
+
+
+	public void setRepetition(Integer repetition) {
+		this.repetition = repetition;
+	}
+
+
+
+	public Integer getIdExercices() {
 		return idExercices;
 	}
 
-	public void setIdExercices(String idExercices) {
+	public void setIdExercices(Integer idExercices) {
 		this.idExercices = idExercices;
 	}
 
-	public String getNomExercie() {
-		return nomExercie;
+	public String getNomExercice() {
+		return nomExercice;
 	}
 
-	public void setNomExercie(String nomExercie) {
-		this.nomExercie = nomExercie;
+	public void setNomExercice(String nomExercie) {
+		this.nomExercice = nomExercie;
 	}
 
 	public String getDescription() {
