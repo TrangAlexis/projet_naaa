@@ -1,4 +1,4 @@
-package appli_naaa.model;
+package main.model;
 
 import java.util.Objects;
 

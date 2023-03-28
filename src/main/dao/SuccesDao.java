@@ -1,6 +1,6 @@
-package appli_naaa.dao;
+package main.dao;
 
-import appli_naaa.model.Succes;
+import main.model.Succes;
 
 public interface SuccesDao extends DaoGeneric<Succes, Integer>{
 

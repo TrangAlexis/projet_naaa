@@ -1,4 +1,4 @@
-package appli_naaa.dao;
+package main.dao;
 import java.util.List;
 
 public interface DaoGeneric<T, K> {

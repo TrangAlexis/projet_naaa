@@ -1,6 +1,6 @@
-package appli_naaa.dao;
+package main.dao;
 
-import appli_naaa.model.Exercices;
+import main.model.Exercices;
 
 public interface ExercicesDao extends DaoGeneric<Exercices, Integer>{
 

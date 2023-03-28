@@ -1,4 +1,4 @@
-package appli_naaa.dao;
+package main.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import appli_naaa.model.Client;
-import appli_naaa.model.Succes;
+import main.model.Client;
+import main.model.Succes;
 
 public class SuccesDaoImpl implements SuccesDao{
 

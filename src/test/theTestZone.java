@@ -1,18 +1,18 @@
-package appli_naaa.app;
+package test;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import appli_naaa.dao.ClientDao;
-import appli_naaa.dao.Context;
-import appli_naaa.dao.ExercicesDao;
-import appli_naaa.dao.ProgrammesDao;
-import appli_naaa.dao.SuccesDao;
-import appli_naaa.model.Client;
-import appli_naaa.model.Exercices;
-import appli_naaa.model.Programmes;
-import appli_naaa.model.Succes;
+import main.dao.ClientDao;
+import main.dao.Context;
+import main.dao.ExercicesDao;
+import main.dao.ProgrammesDao;
+import main.dao.SuccesDao;
+import main.model.Client;
+import main.model.Exercices;
+import main.model.Programmes;
+import main.model.Succes;
 
 public class theTestZone {
 	public static void main(String[] args) {
@@ -33,18 +33,19 @@ public class theTestZone {
 		System.out.println("-----------CLIENTS---------");
 		ClientDao clientDao = Context.getClientDao();
 		
-		Client client1= new Client(10,"F","BoB","Billy","CompteBob","mdpBob",50,"billy.bob@gmail.com",10);
+		Client client1= new Client(null,"F","BoB","Billy","CompteBob","mdpBob",0,"billy.bob@gmail.com",null);
 		clientDao.insert(client1);
-		System.out.println(clientDao.findByKey(10));
-		Client client2= new Client(20,"F","Baba","Yaga","CompteBaba","mdpBaba",50,"billy.bob@gmail.com",20);
+		System.out.println(clientDao.findByCompte("CompteBob"));
+		Client client2= new Client(null,"F","Baba","Yaga","CompteBaba","mdpBaba",0,"billy.bob@gmail.com",null);
 		clientDao.insert(client2);
 		System.out.println(clientDao.findAll());
 		
-		client1.setCompte("ATCHOUM");
+		client1=clientDao.findByCompte("CompteBob");
+		client1.setNom("BILLY");
 		clientDao.update(client1);
 
-		clientDao.deleteByKey(10);
-		clientDao.delete(client2);
+		clientDao.deleteByCompte("CompteBob");
+		clientDao.deleteByCompte("CompteBaba");
 		
 		
 		

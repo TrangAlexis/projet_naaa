@@ -1,11 +1,13 @@
-package appli_naaa.model;
+package main.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import appli_naaa.dao.Context;
-import appli_naaa.dao.ExercicesDao;
+import main.dao.ExercicesDao;
+import main.dao.Context;
+
+
 
 
 public class Programmes {

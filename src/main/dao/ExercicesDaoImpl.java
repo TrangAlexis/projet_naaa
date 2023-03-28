@@ -1,11 +1,11 @@
-package appli_naaa.dao;
+package main.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import appli_naaa.model.Exercices;
+import main.model.Exercices;
 
 public class ExercicesDaoImpl implements ExercicesDao{
 

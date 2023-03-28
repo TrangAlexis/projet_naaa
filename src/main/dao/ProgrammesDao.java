@@ -1,6 +1,6 @@
-package appli_naaa.dao;
+package main.dao;
 
-import appli_naaa.model.Programmes;
+import main.model.Programmes;
 
 public interface ProgrammesDao extends DaoGeneric<Programmes, Integer>{
 
