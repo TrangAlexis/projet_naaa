@@ -9,6 +9,11 @@ public class Context {
 
 	private static Context singleton;
 	private EntityManagerFactory emf;
+	private static DaoExercice daoExercice = new DaoExerciceImpl();
+	
+	public static DaoExercice getDaoExercice() {
+		return daoExercice;
+	}
 
 	private Context() {
 		emf = Persistence.createEntityManagerFactory("bdd_naaa");
