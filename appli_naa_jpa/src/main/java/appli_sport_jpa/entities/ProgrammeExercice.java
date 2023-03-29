@@ -2,28 +2,48 @@ package appli_sport_jpa.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="programme_exercice")
+@IdClass(ProgrammeExerciceId.class)
 public class ProgrammeExercice {
-	private Long programmeId;
+	@Id
+	@ManyToOne
+	@JoinColumn(name="programme_exercice_id_programme", foreignKey = @ForeignKey(name="programme_exercice_id_programme_fk"))
+	private Programme programme;
+	@Column(name="programme_exercice_repetition")
 	private Integer repetition;
-	private Long exerciceId;
+	@Id
+	@ManyToOne
+	@JoinColumn(name="programme_exercice_id_exercice", foreignKey = @ForeignKey(name="programme_exercice_id_exercice_fk"))
+	private Exercice exercice;
 	
 	public ProgrammeExercice() {
 		
 	}
 
-	public ProgrammeExercice(Long programmeId, Integer repetition, Long exerciceId) {
+	public ProgrammeExercice(Programme programme, Integer repetition, Exercice exercice) {
 		super();
-		this.programmeId = programmeId;
+		this.programme = programme;
 		this.repetition = repetition;
-		this.exerciceId = exerciceId;
+		this.exercice = exercice;
 	}
 
-	public Long getProgrammeId() {
-		return programmeId;
+	public Programme getProgramme() {
+		return programme;
 	}
 
-	public void setProgrammeId(Long programmeId) {
-		this.programmeId = programmeId;
+	public void setProgramme(Programme programme) {
+		this.programme = programme;
 	}
 
 	public Integer getRepetition() {
@@ -34,23 +54,23 @@ public class ProgrammeExercice {
 		this.repetition = repetition;
 	}
 
-	public Long getExerciceId() {
-		return exerciceId;
+	public Exercice getExercice() {
+		return exercice;
 	}
 
-	public void setExerciceId(Long exerciceId) {
-		this.exerciceId = exerciceId;
+	public void setExercice(Exercice exercice) {
+		this.exercice = exercice;
 	}
 
 	@Override
 	public String toString() {
-		return "ProgrammeExercice [programmeId=" + programmeId + ", repetition=" + repetition + ", exerciceId="
-				+ exerciceId + "]";
+		return "ProgrammeExercice [programme=" + programme + ", repetition=" + repetition + ", exercice="
+				+ exercice + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(exerciceId, programmeId, repetition);
+		return Objects.hash(exercice, programme, repetition);
 	}
 
 	@Override
@@ -62,7 +82,7 @@ public class ProgrammeExercice {
 		if (getClass() != obj.getClass())
 			return false;
 		ProgrammeExercice other = (ProgrammeExercice) obj;
-		return Objects.equals(exerciceId, other.exerciceId) && Objects.equals(programmeId, other.programmeId)
+		return Objects.equals(exercice, other.exercice) && Objects.equals(programme, other.programme)
 				&& Objects.equals(repetition, other.repetition);
 	}
 	

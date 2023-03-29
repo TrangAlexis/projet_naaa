@@ -5,12 +5,23 @@ import javax.persistence.Persistence;
 
 
 
+
 public class Context {
 
 	private static Context singleton;
 	private EntityManagerFactory emf;
 	private static DaoExercice daoExercice = new DaoExerciceImpl();
 	
+	
+	private static DaoProgramme daoProgramme = new DaoProgrammeImpl();
+
+	
+	
+	public static DaoProgramme getDaoProgramme() {
+		return daoProgramme;
+	}
+
+
 	public static DaoExercice getDaoExercice() {
 		return daoExercice;
 	}
