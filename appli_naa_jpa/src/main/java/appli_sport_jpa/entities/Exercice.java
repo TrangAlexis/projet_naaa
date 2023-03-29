@@ -2,9 +2,25 @@ package appli_sport_jpa.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="exercice")
 public class Exercice {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "exercise_id")
 	private Long id;
+	@Column(name= "exercice_name")
 	private String nom;
+	@Column(name= "description", columnDefinition = "TEXT")
+	@Lob // Big stockage de donnée (ici text) dans uen colonne de bdd
 	private String description;
 	
 	public Exercice() {
