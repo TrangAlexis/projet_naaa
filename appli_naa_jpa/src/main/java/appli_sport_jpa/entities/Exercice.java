@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Exercice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "exercise_id")
+	@Column(name = "exercice_id")
 	private Long id;
 	@Column(name= "exercice_name")
 	private String nom;
