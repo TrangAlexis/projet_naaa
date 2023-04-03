@@ -1,4 +1,4 @@
-package aapli_sport_jpa.repositories;
+package appli_sport_jpa.repositories;
 
 public interface CoachRepository {
 
