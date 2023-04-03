@@ -2,10 +2,34 @@ package appli_sport_jpa.entities;
 
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+
+@Table(name = "coach")
+@AttributeOverrides({
+	@AttributeOverride(name = "id", column = @Column(name = "coach_id")),
+	@AttributeOverride(name = "nom", column = @Column(name = "coach_nom", nullable = false)),
+	@AttributeOverride(name = "prenom", column = @Column(name = "coach_prenom", nullable = false)),
+	@AttributeOverride(name = "email", column = @Column(name = "coach_email")),
+	@AttributeOverride(name = "login", column = @Column(name = "coach_login", nullable = false)),
+	@AttributeOverride(name = "mdp", column = @Column(name = "coach_mdp", nullable = false)),
+	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces")),
+	@AttributeOverride(name = "dateNaissance", column = @Column(name = "coach_dateNaissance"))
+})
 public class Coach extends Personne{
 	
+    @Transient
 	private Set<Programme> programme;
+    @Transient
 	private Set<Exercice> exercices;
+	
 	
 	public Coach() {
 		

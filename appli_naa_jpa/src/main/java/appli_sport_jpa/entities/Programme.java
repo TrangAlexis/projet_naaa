@@ -4,19 +4,42 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.annotation.processing.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+
+@Entity
+@Table(name="programme")
 public class Programme {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="programme_id")
 	private Long id;
+	@Column(name="programme_name")
 	private String nom;
+	@Column(name="programme_duree")
 	private Integer nombreJours;
-	private Set<Exercice> exercices;
+	@OneToMany(mappedBy = "programme")
+	private Set<ProgrammeExercice> exercices;
+	@Transient
 	private List<Client> clientDansProgramme;
+	@Transient
 	private List<Client> clientTermineProgramme;
+	@Transient
+	private Personne coachCreateur;
 	
 	public Programme() {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<Exercice> exercices, List<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, List<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -52,11 +75,11 @@ public class Programme {
 		this.nom = nom;
 	}
 
-	public Set<Exercice> getExercices() {
+	public Set<ProgrammeExercice> getExercices() {
 		return exercices;
 	}
 
-	public void setExercices(Set<Exercice> exercices) {
+	public void setExercices(Set<ProgrammeExercice> exercices) {
 		this.exercices = exercices;
 	}
 
