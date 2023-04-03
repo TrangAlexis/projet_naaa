@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "client")
@@ -27,7 +28,8 @@ public class Client extends Personne{
 	@Column(name = "client_premium")
 	private boolean premium;
 	@ManyToOne()
-	@Column(name = "client_programme")
+	@Column(name = "client_programme")	
+	@Transient
 	private Programme programme;
 	
 	public Client() {
