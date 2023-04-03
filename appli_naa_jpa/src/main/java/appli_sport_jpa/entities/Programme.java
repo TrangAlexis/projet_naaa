@@ -4,10 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-<<<<<<< HEAD
-=======
-import javax.annotation.processing.Generated;
->>>>>>> 6b90bb7e1e3d01c73e7776727ab3fe461f821126
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +25,7 @@ public class Programme {
 	private String nom;
 	@Column(name="programme_duree")
 	private Integer nombreJours;
-<<<<<<< HEAD
 	@Transient
-=======
->>>>>>> 6b90bb7e1e3d01c73e7776727ab3fe461f821126
 	@OneToMany(mappedBy = "programme")
 	private Set<ProgrammeExercice> exercices;
 	@Transient
