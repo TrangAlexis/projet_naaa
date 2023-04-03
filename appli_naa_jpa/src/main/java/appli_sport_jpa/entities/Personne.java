@@ -3,20 +3,39 @@ package appli_sport_jpa.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+
 public abstract class Personne {
-	private Long id;
-	private String nom;
-	private String prenom;
-	private String email;
-	private String login;
-	private String mdp;
-	private Integer pointsDeSucces;
-	private LocalDate dateNaissance;
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
+	    private String nom;
+	    //@Column(name = "personne_prenom", nullable = false)
+	    private String prenom;
+	    //@Column(name = "personne_email")
+	    private String email;
+	    //@Column(name = "personne_login")
+	    private String login;
+	    //@Column(name = "personne_mdp")
+	    private String mdp;
+	    //@Column(name = "personne_pointsDeSucces")
+	    private Integer pointsDeSucces;
+	    //@Column(name = "personne_dateNaissance")
+	    private LocalDate dateNaissance;
+
 	
 	public Personne() {
 		
 	}
-
+	
+	
+	
 	public Personne(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
 			LocalDate dateNaissance) {
 		super();
