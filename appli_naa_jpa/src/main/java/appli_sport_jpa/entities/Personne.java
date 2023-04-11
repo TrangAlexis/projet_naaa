@@ -17,27 +17,27 @@ import appli_sport_jpa.entities.jsonviews.JsonViews;
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private Long id;
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	// @Column(name = "personne_prenom", nullable = false)
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private String prenom;
 	// @Column(name = "personne_email")
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private String email;
 	// @Column(name = "personne_login")
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private String login;
 	// @Column(name = "personne_mdp")
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private String mdp;
 	// @Column(name = "personne_pointsDeSucces")
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private Integer pointsDeSucces;
 	// @Column(name = "personne_dateNaissance")
-	@JsonView(JsonViews.Personne.class)
+	@JsonView(JsonViews.Simple.class)
 	private LocalDate dateNaissance;
 
 	public Personne() {
