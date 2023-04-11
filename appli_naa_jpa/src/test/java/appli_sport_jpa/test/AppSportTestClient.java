@@ -42,9 +42,10 @@ class AppSportTestClient {
 	void deleteTest() {
 		Client client = new Client("Bob","Billy","Billy@Bob","bb","mdp",0,LocalDate.now(),false, null);
 		clientService.save(client);
-		clientService.deleteById(client.getId());
 		System.out.println(clientService.findAll().size());
 		assertNotNull(clientService.findAll());
+		clientService.deleteById(client.getId());
+		
 	}
 	
 
