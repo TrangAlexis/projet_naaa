@@ -15,39 +15,35 @@ import appli_sport_jpa.entities.jsonviews.JsonViews;
 @MappedSuperclass
 
 public abstract class Personne {
-	
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @JsonView(JsonViews.Simple.class)
-	    private Long id;
-	    @JsonView(JsonViews.Simple.class)
-	    private String nom;
-	    //@Column(name = "personne_prenom", nullable = false)
-	    @JsonView(JsonViews.Simple.class)
-	    private String prenom;
-	    //@Column(name = "personne_email")
-	    @JsonView(JsonViews.Simple.class)
-	    private String email;
-	    //@Column(name = "personne_login")
-	    @JsonView(JsonViews.Simple.class)
-	    private String login;
-	    //@Column(name = "personne_mdp")
-	    @JsonView(JsonViews.Simple.class)
-	    private String mdp;
-	    //@Column(name = "personne_pointsDeSucces")
-	    @JsonView(JsonViews.Simple.class)
-	    private Integer pointsDeSucces;
-	    //@Column(name = "personne_dateNaissance")
-	    @JsonView(JsonViews.Simple.class)
-	    private LocalDate dateNaissance;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Simple.class)
+	private Long id;
+	@JsonView(JsonViews.Simple.class)
+	private String nom;
+	// @Column(name = "personne_prenom", nullable = false)
+	@JsonView(JsonViews.Simple.class)
+	private String prenom;
+	// @Column(name = "personne_email")
+	@JsonView(JsonViews.Simple.class)
+	private String email;
+	// @Column(name = "personne_login")
+	@JsonView(JsonViews.Simple.class)
+	private String login;
+	// @Column(name = "personne_mdp")
+	@JsonView(JsonViews.Simple.class)
+	private String mdp;
+	// @Column(name = "personne_pointsDeSucces")
+	@JsonView(JsonViews.Simple.class)
+	private Integer pointsDeSucces;
+	// @Column(name = "personne_dateNaissance")
+	@JsonView(JsonViews.Simple.class)
+	private LocalDate dateNaissance;
 
-	
 	public Personne() {
-		
+
 	}
-	
-	
-	
+
 	public Personne(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
 			LocalDate dateNaissance) {
 		super();
@@ -146,7 +142,5 @@ public abstract class Personne {
 		Personne other = (Personne) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }

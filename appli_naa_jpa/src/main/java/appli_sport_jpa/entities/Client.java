@@ -10,6 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import appli_sport_jpa.entities.jsonviews.JsonViews;
+
 @Entity
 @Table(name = "client")
 @AttributeOverrides({
@@ -26,10 +30,12 @@ import javax.persistence.Transient;
 public class Client extends Personne{
 	
 	@Column(name = "client_premium")
+	@JsonView(JsonViews.Client.class)
 	private boolean premium;
 	@ManyToOne()
 	@Column(name = "client_programme")	
 	@Transient
+//	@JsonView(JsonViews.Client.class)
 	private Programme programme;
 	
 	public Client() {
