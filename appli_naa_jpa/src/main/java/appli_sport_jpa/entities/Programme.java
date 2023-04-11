@@ -28,8 +28,8 @@ public class Programme {
 	@Transient
 	@OneToMany(mappedBy = "programme")
 	private Set<ProgrammeExercice> exercices;
-	@Transient
-	private List<Client> clientDansProgramme;
+	@OneToMany(mappedBy = "programme")
+	private Set<Client> clientDansProgramme;
 	@Transient
 	private List<Client> clientTermineProgramme;
 	@Transient
@@ -39,7 +39,7 @@ public class Programme {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, List<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -83,11 +83,11 @@ public class Programme {
 		this.exercices = exercices;
 	}
 
-	public List<Client> getClientDansProgramme() {
+	public Set<Client> getClientDansProgramme() {
 		return clientDansProgramme;
 	}
 
-	public void setClientDansProgramme(List<Client> clientDansProgramme) {
+	public void setClientDansProgramme(Set<Client> clientDansProgramme) {
 		this.clientDansProgramme = clientDansProgramme;
 	}
 

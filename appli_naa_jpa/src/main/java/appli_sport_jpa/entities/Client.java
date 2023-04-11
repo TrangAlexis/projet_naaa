@@ -6,6 +6,9 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -32,10 +35,9 @@ public class Client extends Personne{
 	@Column(name = "client_premium")
 	@JsonView(JsonViews.Client.class)
 	private boolean premium;
-	@ManyToOne()
-	@Column(name = "client_programme")	
-	@Transient
-//	@JsonView(JsonViews.Client.class)
+	@ManyToOne
+	@JoinColumn(name = "client_prog", foreignKey = @ForeignKey(name = "client_programme_fk"))
+//	@Transient
 	private Programme programme;
 	
 	public Client() {
