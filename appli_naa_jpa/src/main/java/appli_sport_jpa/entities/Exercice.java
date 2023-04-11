@@ -10,17 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import appli_sport_jpa.entities.jsonviews.JsonViews;
+
 @Entity
 @Table(name="exercice")
 public class Exercice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "exercice_id")
+	@JsonView(JsonViews.Simple.class)
 	private Long id;
 	@Column(name= "exercice_name")
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	@Column(name= "description", columnDefinition = "TEXT")
 	@Lob // Big stockage de donnée (ici text) dans uen colonne de bdd
+	@JsonView(JsonViews.Simple.class)
 	private String description;
 	
 	public Exercice() {
