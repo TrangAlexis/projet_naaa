@@ -25,6 +25,7 @@ public class Programme {
 	private String nom;
 	@Column(name="programme_duree")
 	private Integer nombreJours;
+	@Transient
 	@OneToMany(mappedBy = "programme")
 	private Set<ProgrammeExercice> exercices;
 	@Transient

@@ -3,7 +3,6 @@ package appli_sport_jpa.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 
 public abstract class Personne {
+	
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
@@ -27,6 +27,7 @@ public abstract class Personne {
 	    //@Column(name = "personne_pointsDeSucces")
 	    private Integer pointsDeSucces;
 	    //@Column(name = "personne_dateNaissance")
+
 	    private LocalDate dateNaissance;
 
 	

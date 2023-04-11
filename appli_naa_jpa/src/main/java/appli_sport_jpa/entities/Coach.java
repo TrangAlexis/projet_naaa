@@ -1,5 +1,6 @@
 package appli_sport_jpa.entities;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -33,6 +34,13 @@ public class Coach extends Personne{
 	public Coach() {
 		
 	}
+	
+
+	public Coach(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
+			LocalDate dateNaissance) {
+		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
+	}
+
 
 	public Coach(Set<Programme> programme, Set<Exercice> exercices) {
 		super();
