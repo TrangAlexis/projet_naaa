@@ -9,24 +9,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import appli_sport_jpa.entities.jsonviews.JsonViews;
+
 @MappedSuperclass
 
 public abstract class Personne {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @JsonView(JsonViews.Simple.class)
 	    private Long id;
+	    @JsonView(JsonViews.Simple.class)
 	    private String nom;
 	    //@Column(name = "personne_prenom", nullable = false)
+	    @JsonView(JsonViews.Simple.class)
 	    private String prenom;
 	    //@Column(name = "personne_email")
+	    @JsonView(JsonViews.Simple.class)
 	    private String email;
 	    //@Column(name = "personne_login")
+	    @JsonView(JsonViews.Simple.class)
 	    private String login;
 	    //@Column(name = "personne_mdp")
+	    @JsonView(JsonViews.Simple.class)
 	    private String mdp;
 	    //@Column(name = "personne_pointsDeSucces")
+	    @JsonView(JsonViews.Simple.class)
 	    private Integer pointsDeSucces;
 	    //@Column(name = "personne_dateNaissance")
+	    @JsonView(JsonViews.Simple.class)
 	    private LocalDate dateNaissance;
 
 	
