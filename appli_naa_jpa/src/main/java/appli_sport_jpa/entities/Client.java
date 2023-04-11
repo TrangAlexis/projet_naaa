@@ -28,7 +28,7 @@ public class Client extends Personne{
 	@Column(name = "client_premium")
 	private boolean premium;
 	@ManyToOne()
-	@Column(name = "client_programme")
+	@Column(name = "client_programme")	
 	@Transient
 	private Programme programme;
 	
