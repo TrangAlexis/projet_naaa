@@ -15,8 +15,7 @@ public class ClientTemporaireService {
     private ClientTemporaireRepository clientTemporaireRepository;
     @Autowired
     private ClientRepository clientRepository;
-    @Autowired
-    private ClientServices clientServices;
+    
     public ClientTemporaire save(ClientTemporaire entity){
         if (entity.getLogin()==null || entity.getLogin().isBlank()) {
             throw new ClientException("Client sans login");

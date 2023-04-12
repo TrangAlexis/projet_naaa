@@ -25,7 +25,7 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 	@AttributeOverride(name = "login", column = @Column(name = "client_login", nullable = false)),
 	@AttributeOverride(name = "mdp", column = @Column(name = "client_mdp", nullable = false)),
 	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces")),
-	@AttributeOverride(name = "dateNaissance", column = @Column(name = "client_dateNaissance"))
+	@AttributeOverride(name = "dateNaissance", column = @Column(name = "client_date_naissance"))
 })
 
 public class Client extends Personne{

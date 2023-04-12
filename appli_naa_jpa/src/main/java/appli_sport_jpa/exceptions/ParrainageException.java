@@ -1,7 +1,10 @@
 package appli_sport_jpa.exceptions;
 
 public class ParrainageException extends RuntimeException{
-    public ParrainageException() {
+
+	private static final long serialVersionUID = 1L;
+
+	public ParrainageException() {
 
     }
 

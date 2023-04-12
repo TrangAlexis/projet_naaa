@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -25,12 +26,11 @@ public class Programme {
 	private String nom;
 	@Column(name="programme_duree")
 	private Integer nombreJours;
-	@Transient
 	@OneToMany(mappedBy = "programme")
 	private Set<ProgrammeExercice> exercices;
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
-	@Transient
+	@OneToMany(mappedBy = "id.programme")
 	private List<Client> clientTermineProgramme;
 	@Transient
 	private Personne coachCreateur;

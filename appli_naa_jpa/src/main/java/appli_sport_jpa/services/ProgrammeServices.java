@@ -40,7 +40,7 @@ public class ProgrammeServices {
 	}
 
 	public void deleteById(Long id) {
-		Programme checkProgramme = this.findById(id);
+		this.findById(id);
 		programmeRepo.delete(findById(id));
 	}	
 	
