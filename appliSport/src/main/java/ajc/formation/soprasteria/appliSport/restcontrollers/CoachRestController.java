@@ -29,10 +29,22 @@ public class CoachRestController {
         return coachServices.getById(id);
     }
 
+//    @PostMapping("")
+//    @JsonView(JsonViews.Coach.class)
+//    public void createOrUpdate(@Valid @RequestBody Coach coach){
+//         coachServices.createOrUpdate(coach);
+//    }
     @PostMapping("")
     @JsonView(JsonViews.Coach.class)
-    public void createOrUpdate(@Valid @RequestBody Coach coach){
-         coachServices.createOrUpdate(coach);
+    public void create(@Valid @RequestBody Coach coach){
+        coachServices.create(coach);
+    }
+
+    @PutMapping("/{id}")
+    @JsonView(JsonViews.Coach.class)
+    public void update(@PathVariable("id") Long id, @Valid @RequestBody Coach coach){
+        coach.setId(id);
+        coachServices.update(coach);
     }
 
     @DeleteMapping("")
