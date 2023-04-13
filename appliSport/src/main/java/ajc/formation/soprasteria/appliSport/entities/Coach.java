@@ -7,6 +7,9 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -29,7 +32,9 @@ public class Coach extends Personne{
 	private Set<Programme> programme;
     @Transient
 	private Set<Exercice> exercices;
-	
+	@OneToOne
+	@JoinColumn(name = "compte_id", foreignKey = @ForeignKey(name = "client_compte_id_fk"))
+	private Compte compte;
 	
 	public Coach() {
 		
@@ -39,6 +44,17 @@ public class Coach extends Personne{
 	public Coach(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
 			LocalDate dateNaissance) {
 		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
+	}
+
+	
+
+
+	public Coach(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
+			LocalDate dateNaissance, Set<Programme> programme, Set<Exercice> exercices, Compte compte) {
+		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
+		this.programme = programme;
+		this.exercices = exercices;
+		this.compte = compte;
 	}
 
 
@@ -64,10 +80,25 @@ public class Coach extends Personne{
 		this.exercices = exercices;
 	}
 
+	
+	
+	public Compte getCompte() {
+		return compte;
+	}
+
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Coach [programme=" + programme + ", exercices=" + exercices + "]";
 	}
+
+
+	
 	
 	
 	

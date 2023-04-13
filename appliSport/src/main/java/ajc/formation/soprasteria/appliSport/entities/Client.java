@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -25,7 +26,7 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 	@AttributeOverride(name = "login", column = @Column(name = "client_login", nullable = false)),
 	@AttributeOverride(name = "mdp", column = @Column(name = "client_mdp", nullable = false)),
 	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces")),
-	@AttributeOverride(name = "dateNaissance", column = @Column(name = "client_date_naissance"))
+	@AttributeOverride(name = "dateNaissance", column = @Column(name = "client_dateNaissance"))
 })
 
 public class Client extends Personne{
@@ -37,6 +38,10 @@ public class Client extends Personne{
 	@JoinColumn(name = "client_prog", foreignKey = @ForeignKey(name = "client_programme_fk"))
 //	@Transient
 	private Programme programme;
+	@OneToOne
+	@JoinColumn(name = "compte_id", foreignKey = @ForeignKey(name = "client_compte_id_fk"))
+	private Compte compte;
+
 	
 	public Client() {
 		
@@ -49,6 +54,27 @@ public class Client extends Personne{
 		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
 		this.premium = premium;
 		this.programme = programme;
+	}
+	
+
+	public Client(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
+			LocalDate dateNaissance, boolean premium, Programme programme, Compte compte) {
+		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
+		this.premium = premium;
+		this.programme = programme;
+		this.compte = compte;
+	}
+
+
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 
@@ -73,7 +99,7 @@ public class Client extends Personne{
 	public String toString() {
 		return "Client [premium=" + premium + ", programme=" + programme + "]";
 	}
-	
+
 	
 	
 }

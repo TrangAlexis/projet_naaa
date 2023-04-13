@@ -10,8 +10,4 @@ public class JsonViews {
 	public static class Client extends Simple {
 
 	}
-
-	public static class Coach extends Simple {
-
-	}
 }

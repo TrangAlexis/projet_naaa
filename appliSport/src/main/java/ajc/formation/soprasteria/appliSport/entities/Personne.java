@@ -3,10 +3,13 @@ package ajc.formation.soprasteria.appliSport.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -40,6 +43,7 @@ public abstract class Personne {
 	@JsonView(JsonViews.Simple.class)
 	private LocalDate dateNaissance;
 
+
 	public Personne() {
 
 	}
@@ -55,7 +59,7 @@ public abstract class Personne {
 		this.pointsDeSucces = pointsDeSucces;
 		this.dateNaissance = dateNaissance;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -103,6 +107,8 @@ public abstract class Personne {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	
+	
 
 	public Integer getPointsDeSucces() {
 		return pointsDeSucces;
