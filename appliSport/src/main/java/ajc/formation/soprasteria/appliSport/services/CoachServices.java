@@ -40,20 +40,29 @@ public class CoachServices   {
 		coachRepository.delete(coach);
 	}
 
-	public void createOrUpdate(Coach coach) {
-		if (coach.getNom() == null || coach.getNom().isBlank()) {
-			throw new CoachException("nom obligatoire");
-		}
-		if (coach.getPrenom() == null || coach.getPrenom().isBlank()) {
-			throw new CoachException("prenom obligatoire");
-		}
-		if (coach.getLogin() == null || coach.getLogin().isBlank()) {
-			throw new CoachException("login obligatoire");
-		}
-		if (coach.getMdp() == null || coach.getMdp().isBlank()) {
-			throw new CoachException("mdp obligatoire");
-		}
-		coachRepository.save(coach);
+	public void create(Coach coach) {
+	    if (coach.getNom() == null || coach.getNom().isBlank()) {
+	        throw new CoachException("nom obligatoire");
+	    }
+	    if (coach.getPrenom() == null || coach.getPrenom().isBlank()) {
+	        throw new CoachException("prenom obligatoire");
+	    }
+	    if (coach.getLogin() == null || coach.getLogin().isBlank()) {
+	        throw new CoachException("login obligatoire");
+	    }
+	    if (coach.getMdp() == null || coach.getMdp().isBlank()) {
+	        throw new CoachException("mdp obligatoire");
+	    }
+	    coachRepository.save(coach);
 	}
 
+	public void update(Coach coach) {
+	    if (coach.getId() == null) {
+	        throw new CoachException("id obligatoire");
+	    }
+	    if (!coachRepository.existsById(coach.getId())) {
+	        throw new CoachException("id inconnu");
+	    }
+	    coachRepository.save(coach);
+	}
 }
