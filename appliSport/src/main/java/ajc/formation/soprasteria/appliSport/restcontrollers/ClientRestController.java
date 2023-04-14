@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import ajc.formation.soprasteria.appliSport.entities.Coach;
+import ajc.formation.soprasteria.appliSport.services.CoachServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -50,7 +52,7 @@ public class ClientRestController {
 		client = clientSrv.findById(id);
 		return client;
 	}
-	
+
 	@PostMapping({ "", "/inscription" })
 	@JsonView(JsonViews.Client.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -58,10 +60,18 @@ public class ClientRestController {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		clientSrv.create(client);
+		int role = client.getCompte().getRole().ordinal();
+		if (role == 0) {
+			clientSrv.createClientFreemium(client);
+		} else if (role == 1) {
+			clientSrv.createClientPremium(client);
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid role");
+		}
 		return client;
 	}
-	
+
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Client.class)
 	public Client update(@RequestBody Client client, @PathVariable Long id) {

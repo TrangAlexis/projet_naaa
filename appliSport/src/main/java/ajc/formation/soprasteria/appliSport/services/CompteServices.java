@@ -31,7 +31,7 @@ public class CompteServices {
 		return create(compte);
 	}
 
-	public Compte createAdmin(Compte compte) {
+	public Compte createCoach(Compte compte) {
 		compte.setRole(Role.ROLE_COACH);
 		return create(compte);
 	}

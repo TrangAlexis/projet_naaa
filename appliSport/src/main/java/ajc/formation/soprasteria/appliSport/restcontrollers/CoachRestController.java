@@ -5,7 +5,10 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 import ajc.formation.soprasteria.appliSport.services.CoachServices;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +23,17 @@ public class CoachRestController {
 	@JsonView(JsonViews.Coach.class)
     public List<Coach> getAll() {
         return coachServices.getAll();
+    }
+
+    @PostMapping({ "", "/inscription" })
+    @JsonView(JsonViews.Coach.class)
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Coach create(@Valid @RequestBody Coach coach, BindingResult br) {
+        if (br.hasErrors()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        coachServices.createCoach(coach);
+        return coach;
     }
 
     @GetMapping("/{id}")

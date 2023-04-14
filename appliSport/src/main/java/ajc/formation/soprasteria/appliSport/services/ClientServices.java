@@ -3,6 +3,8 @@ package ajc.formation.soprasteria.appliSport.services;
 import java.util.List;
 import java.util.Set;
 
+import ajc.formation.soprasteria.appliSport.entities.Coach;
+import ajc.formation.soprasteria.appliSport.repositories.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class ClientServices {
 
 	@Autowired
 	private CompteServices compteSrv;
+
+	@Autowired
+	private CoachRepository coachRepository;
 	
 	public void save(Client client) {
 		if (client.getLogin()==null || client.getLogin().isBlank()) {
@@ -33,7 +38,7 @@ public class ClientServices {
 		clientRepository.save(client);
 	}
 
-	public Client create(Client client) {
+	public Client createClientFreemium(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
@@ -44,7 +49,17 @@ public class ClientServices {
 		}
 	}
 
-	
+	public Client createClientPremium(Client client) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Client>> violations = validator.validate(client);
+		if (violations.isEmpty()) {
+			compteSrv.createClientPremium(client.getCompte());
+			return clientRepository.save(client);
+		} else {
+			throw new ClientException();
+		}
+	}
+
 	public void deleteById(Long id) {
 		Client checkClient = this.findById(id);
 		clientRepository.deleteById(id);

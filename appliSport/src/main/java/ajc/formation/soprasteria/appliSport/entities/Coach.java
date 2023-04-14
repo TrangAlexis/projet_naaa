@@ -1,5 +1,8 @@
 package ajc.formation.soprasteria.appliSport.entities;
 
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -33,7 +36,8 @@ public class Coach extends Personne{
     @Transient
 	private Set<Exercice> exercices;
 	@OneToOne
-	@JoinColumn(name = "compte_id", foreignKey = @ForeignKey(name = "client_compte_id_fk"))
+	@JoinColumn(name = "compte_id", foreignKey = @ForeignKey(name = "coach_compte_id_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Compte compte;
 	
 	public Coach() {

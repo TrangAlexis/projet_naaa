@@ -21,6 +21,7 @@ public class ApiSecurityConfig {
 				.and()
 				.authorizeRequests()
 					.antMatchers(HttpMethod.POST,"/api/client/inscription").anonymous()
+					.antMatchers(HttpMethod.POST,"/api/coach/inscription").anonymous()
 //					.antMatchers(HttpMethod.POST, "/api/client").hasAnyRole("CLIENTFREEMIUM")
 					.antMatchers(HttpMethod.GET).permitAll()
 					.anyRequest().hasAnyRole("ADMIN")
