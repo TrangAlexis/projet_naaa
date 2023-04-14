@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center h-screen">
+<!-- <div class="flex justify-center items-center h-screen">
     <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 class="text-xl text-gray-700 font-bold mb-10 text-center">Inscription</h2>
         <div class="mt-4">
@@ -46,4 +46,29 @@
                 class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Annuler</a>
         </div>
     </form>
-</div>
+</div> -->
+
+<form (ngSubmit)="onSubmit()">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom" [(ngModel)]="nom" required>
+
+  <label for="prenom">Prénom :</label>
+  <input type="text" id="prenom" name="prenom" [(ngModel)]="prenom" required>
+
+  <label for="email">Email :</label>
+  <input type="email" id="email" name="email" [(ngModel)]="email" required>
+
+  <label for="login">Login :</label>
+  <input type="text" id="login" name="login" [(ngModel)]="login" required>
+
+  <label for="mdp">Mot de passe :</label>
+  <input type="password" id="mdp" name="mdp" [(ngModel)]="mdp" required>
+
+  <label for="role">Rôle :</label>
+  <select id="role" name="role" [(ngModel)]="role" required>
+    <option value="ROLE_CLIENTFREEMIUM">Client Freemium</option>
+    <option value="ROLE_CLIENTPREMIUM">Client Premium</option>
+  </select>
+
+  <button type="submit">Créer un client</button>
+</form>

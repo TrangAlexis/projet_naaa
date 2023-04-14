@@ -1,3 +1,4 @@
+import { ClientService } from './../services/ClientService';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validators';
@@ -9,11 +10,20 @@ import { MustMatch } from '../helpers/must-match.validators';
 })
 export class InscriptionComponent implements OnInit {
 
+  nom!: string;
+  prenom!: string;
+  email!: string;
+  login!: string;
+  mdp!: string;
+  role!: string;
+
+
+
   inscriptionForm!: FormGroup;
   submitted = false;
 required: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private clientService: ClientService) { }
 
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
@@ -28,14 +38,27 @@ required: any;
 
   get f() { return this.inscriptionForm.controls; }
 
-  onSubmit() {
-    this.submitted = true;
+  // onSubmit() {
+  //   this.submitted = true;
 
-    if (this.inscriptionForm.invalid) {
-      return;
-    }
+  //   if (this.inscriptionForm.invalid) {
+  //     return;
+  //   }
 
-    alert('Inscription réussie !\n\n' + JSON.stringify(this.inscriptionForm.value, null, 4));
+  //   alert('Inscription réussie !\n\n' + JSON.stringify(this.inscriptionForm.value, null, 4));
+  // }
+
+  onSubmit(): void {
+    const client = {
+      nom: this.nom,
+      prenom: this.prenom,
+      email: this.email,
+      login: this.login,
+      mdp: this.mdp,
+      compte: {
+        role: this.role
+      }
+    };
   }
 
 }

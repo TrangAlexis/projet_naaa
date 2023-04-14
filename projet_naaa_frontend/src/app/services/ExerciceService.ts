@@ -7,7 +7,7 @@ import { Exercice } from '../models/exercise.model';
   providedIn: 'root',
 })
 export class ExerciceService {
-  private baseUrl = 'http://localhost:3000/exercices';
+  private baseUrl = 'http://localhost:8080/naaa/api/exercice';
 
   constructor(private http: HttpClient) {}
 
@@ -20,12 +20,12 @@ export class ExerciceService {
   }
 
   create(exercice: Exercice): Observable<Exercice> {
-    return this.http.post<Exercice>(`${this.baseUrl}`, exercice);
+    return this.http.post<Exercice>(`${this.baseUrl}/ajouter`, exercice);
   }
 
-//   update(exercice: Exercice): Observable<Exercice> {
-//     return this.http.put<Exercice>(`${this.baseUrl}/${exercice.id}`, exercice);
-//   }
+  update(exercice: Exercice): Observable<Exercice> {
+    return this.http.put<Exercice>(`${this.baseUrl}/${exercice.id}`, exercice);
+  }
 
   delete(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);

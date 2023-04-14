@@ -1,6 +1,6 @@
-export class Exercice {
-    constructor(
-    public name: string,
-    public description: string
-    ) {}
-    }
+export interface Exercice {
+  id?: number;
+  nom: string;
+  description: string;
+}
+

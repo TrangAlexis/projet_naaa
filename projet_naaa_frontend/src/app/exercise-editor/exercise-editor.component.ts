@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Exercice } from '../models/exercise.model';
 import { ExerciceService } from '../services/ExerciceService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-editor',
@@ -8,18 +9,16 @@ import { ExerciceService } from '../services/ExerciceService';
   styleUrls: ['./exercise-editor.component.scss']
 })
 export class ExerciseEditorComponent {
+  exercice: Exercice = {
+    nom: '',
+    description: '',
+  };
 
-  
-  exercice: Exercice = new Exercice("Je suis là", "Hello");
-  
-  constructor(private exerciceService: ExerciceService) { }
-  
+  constructor(private exerciceService: ExerciceService, private router: Router) {}
 
   onSubmit() {
-    this.exerciceService.create(this.exercice)
-      .subscribe(
-        data => console.log('Exercice ajouté avec succès !'),
-        error => console.log('Une erreur est survenue lors de l\'ajout de l\'exercice.')
-      );
+    this.exerciceService.create(this.exercice).subscribe((result) => {
+      this.router.navigate(['/programs-page']);
+    });
   }
 }
