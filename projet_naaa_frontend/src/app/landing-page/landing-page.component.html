@@ -1,0 +1,12 @@
+<div *ngIf="showLandingPage">
+    <div class="flex justify-center items-center h-screen flex-col gap-5 text-center shadow-2xl">
+        <h4 class="text-white font-bold">Bienvenue sur l'application de sport</h4>
+        <a routerLink="/inscription" routerLinkActive="active"
+            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Inscription</a>
+        <a routerLink="/connexion" routerLinkActive="active"
+            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Connexion</a>
+    </div>
+</div>
+<div *ngIf="!showLandingPage">
+    <app-connexion></app-connexion>
+</div>

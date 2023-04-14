@@ -1,0 +1,44 @@
+<div class="pb-20">
+    <app-navbar></app-navbar>
+
+    <div class="rounded-lg shadow-md mt-5 p-6 mx-5 bg-slate-700">
+        <h3 class="font-bold text-lg tracking-widest uppercase text-center text-white mb-4">Coin du Coach
+        </h3>
+        <div class="flex flex-col md:flex-row gap-4">
+            <button
+                class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" routerLink="/app-exercise-editor">
+                Créer un exercice
+            </button>
+            <button
+                class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+                Créer un programme
+            </button>
+        </div>
+    </div>
+
+    <app-user-status></app-user-status>
+    <app-search-bar></app-search-bar>
+
+    <div class="my-4">
+        <h3 class="font-bold text-lg tracking-widest uppercase text-center text-white pt-5">Programmes Favoris
+        </h3>
+        <div class="flex overflow-x-auto flex-nowrap">
+            <ng-container *ngFor="let program of getFavoritePrograms(programs)">
+                <app-programs [programs]="program" class="min-w-[350px]"></app-programs>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <h3 class="font-bold text-lg tracking-widest uppercase text-center text-white pt-5">Programmes populaires
+        </h3>
+        <div class="flex overflow-x-auto flex-nowrap">
+            <ng-container *ngFor="let program of programs">
+                <app-programs [programs]="program" class="min-w-[350px]"></app-programs>
+            </ng-container>
+        </div>
+    </div>
+
+
+
+</div>

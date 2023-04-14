@@ -1,0 +1,49 @@
+<div class="flex justify-center items-center h-screen">
+    <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-xl text-gray-700 font-bold mb-10 text-center">Inscription</h2>
+        <div class="mt-4">
+            <label for="email" class="block text-gray-700">Email</label>
+            <input type="text" formControlName="email"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [ngClass]="{ 'border-red-500': submitted && f['email'].errors }" />
+            <div *ngIf="submitted && f['email'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['email'].errors && f['email'].untouched required">Email est obligatoire</div>
+                <div *ngIf="f['email'].errors && f['email'].touched email">Email invalide</div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label for="username" class="block text-gray-700">Nom d'utilisateur</label>
+            <input type="text" formControlName="username"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [ngClass]="{ 'border-red-500': submitted && f['username'].errors }" />
+            <div *ngIf="submitted && f['username'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['username'].errors required">Nom d'utilisateur est obligatoire</div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label for="password" class="block text-gray-700">Mot de passe</label>
+            <input type="password" formControlName="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [ngClass]="{ 'border-red-500': submitted && f['password'].errors}" />
+            <div *ngIf="submitted && f['password'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['password'].errors && f['password'].untouched required">Mot de passe est obligatoire</div>
+            </div>
+        </div>
+        <div class="mt-4 mb-6">
+            <label for="confirmPassword" class="block text-gray-700">Confirmation du mot de passe</label>
+            <input type="password" formControlName="confirmPassword"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                [ngClass]="{ 'border-red-500': submitted && f['confirmPassword'].errors }" />
+            <div *ngIf="submitted && f['confirmPassword'].errors" class="text-red-500 text-sm mt-1">
+                <div *ngIf="f['confirmPassword'].errors &&f['confirmPassword'].untouched required">Confirmation du mot de passe est obligatoire</div>
+                <div *ngIf="f['confirmPassword'].errors mustMatch">Les mots de passe ne correspondent pas</div>
+            </div>
+        </div>
+        <div class="form-group flex justify-between">
+            <button type="submit"
+                class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">S'inscrire</button>
+            <a routerLink="/"
+                class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Annuler</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+<div class="my-8 mx-5 h-[500px]">
+    <div class="relative rounded-lg overflow-hidden h-full">
+        <img src="{{ programs.imageSrc }}" alt="{{ programs.title }}"
+            class="w-full h-[500px] object-cover object-center brightness-50">
+
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+            <h2 class="text-2xl font-bold mb-2">{{ programs.title }}</h2>
+            <p class="text-lg mb-4">{{ programs.points }} points à gagner</p>
+            <p class="text-lg mb-6">Titre récompense: "{{ programs.rewardTitle }}"</p>
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+                    Découvrir
+                </button>
+                <div class="flex items-center">
+                    <svg fill="#ffffff" width="20" height="20" viewBox="0 0 448 512" class="mr-1">
+                        <path
+                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                    </svg>
+                    <p class="text-sm font-bold">{{ programs.participants }}</p>
+                    <p class="text-sm ml-1 text-gray-400">participants</p>
+                </div>
+            </div>
+            <p class="text-sm mt-2 text-gray-400">{{ programs.finishedChallengers }} challengers ont terminé ce
+                programme</p>
+        </div>
+    </div>
+</div>
