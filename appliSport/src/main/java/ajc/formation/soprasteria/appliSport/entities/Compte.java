@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,13 +28,16 @@ public class Compte implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "compte_id")
+	@JsonView(JsonViews.Simple.class)
 	private Long id;
 	@Column(name = "login", nullable = false, unique = true)
+	@JsonView(JsonViews.Simple.class)
 	private String login;
 	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.ORDINAL)
+	@JsonView(JsonViews.Simple.class)
 	private Role role;
 	@OneToOne(mappedBy = "compte")
 	private Client client;

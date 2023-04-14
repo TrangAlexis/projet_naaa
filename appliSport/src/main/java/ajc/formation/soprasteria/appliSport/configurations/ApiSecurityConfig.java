@@ -20,7 +20,7 @@ public class ApiSecurityConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.authorizeRequests()
-					.antMatchers(HttpMethod.POST,"/api/client").anonymous()
+					.antMatchers(HttpMethod.POST,"/api/client/inscription").anonymous()
 //					.antMatchers(HttpMethod.POST, "/api/client").hasAnyRole("CLIENTFREEMIUM")
 					.antMatchers(HttpMethod.GET).permitAll()
 					.anyRequest().hasAnyRole("ADMIN")

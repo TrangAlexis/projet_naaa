@@ -3,10 +3,9 @@ package ajc.formation.soprasteria.appliSport.restcontrollers;
 import ajc.formation.soprasteria.appliSport.entities.Coach;
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 import ajc.formation.soprasteria.appliSport.services.CoachServices;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,14 +36,14 @@ public class CoachRestController {
     @PostMapping("")
     @JsonView(JsonViews.Coach.class)
     public void create(@Valid @RequestBody Coach coach){
-        coachServices.create(coach);
+        coachServices.createOrUpdate(coach);
     }
 
     @PutMapping("/{id}")
     @JsonView(JsonViews.Coach.class)
     public void update(@PathVariable("id") Long id, @Valid @RequestBody Coach coach){
         coach.setId(id);
-        coachServices.update(coach);
+        coachServices.createOrUpdate(coach);
     }
 
     @DeleteMapping("")

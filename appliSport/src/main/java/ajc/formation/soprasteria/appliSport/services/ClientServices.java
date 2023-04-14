@@ -1,6 +1,7 @@
 package ajc.formation.soprasteria.appliSport.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,11 +10,18 @@ import ajc.formation.soprasteria.appliSport.entities.Client;
 import ajc.formation.soprasteria.appliSport.exceptions.ClientException;
 import ajc.formation.soprasteria.appliSport.repositories.ClientRepository;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 @Service
 public class ClientServices {
 
 	@Autowired
 	private ClientRepository clientRepository;
+
+	@Autowired
+	private CompteServices compteSrv;
 	
 	public void save(Client client) {
 		if (client.getLogin()==null || client.getLogin().isBlank()) {
@@ -23,6 +31,17 @@ public class ClientServices {
 			throw new ClientException("Client sans e-mail");
 		}
 		clientRepository.save(client);
+	}
+
+	public Client create(Client client) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Client>> violations = validator.validate(client);
+		if (violations.isEmpty()) {
+			compteSrv.createClientFreemium(client.getCompte());
+			return clientRepository.save(client);
+		} else {
+			throw new ClientException();
+		}
 	}
 
 	

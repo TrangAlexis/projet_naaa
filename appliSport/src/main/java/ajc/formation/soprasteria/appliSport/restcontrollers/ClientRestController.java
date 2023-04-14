@@ -58,7 +58,7 @@ public class ClientRestController {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		clientSrv.save(client);
+		clientSrv.create(client);
 		return client;
 	}
 	

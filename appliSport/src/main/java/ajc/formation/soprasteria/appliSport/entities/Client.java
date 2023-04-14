@@ -32,14 +32,15 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 public class Client extends Personne{
 	
 	@Column(name = "client_premium")
-	@JsonView(JsonViews.Client.class)
-	private boolean premium;
+	//@JsonView(JsonViews.Client.class)
+	private Boolean premium;
 	@ManyToOne
 	@JoinColumn(name = "client_prog", foreignKey = @ForeignKey(name = "client_programme_fk"))
 //	@Transient
 	private Programme programme;
 	@OneToOne
 	@JoinColumn(name = "compte_id", foreignKey = @ForeignKey(name = "client_compte_id_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Compte compte;
 
 	
