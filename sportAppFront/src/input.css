@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Jost', sans-serif;
+}
+
+/* npx tailwindcss -i ./src/input.css -o ./src/output.css --watch */
