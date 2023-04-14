@@ -24,42 +24,20 @@ public abstract class Personne {
 	private Long id;
 	@JsonView(JsonViews.Simple.class)
 	private String nom;
-	// @Column(name = "personne_prenom", nullable = false)
-	@JsonView(JsonViews.Simple.class)
-	private String prenom;
-	// @Column(name = "personne_email")
-	@JsonView(JsonViews.Simple.class)
-	private String email;
-	// @Column(name = "personne_login")
-	@JsonView(JsonViews.Simple.class)
-	private String login;
-	// @Column(name = "personne_mdp")
-	@JsonView(JsonViews.Simple.class)
-	private String mdp;
 	// @Column(name = "personne_pointsDeSucces")
 	@JsonView(JsonViews.Simple.class)
 	private Integer pointsDeSucces;
-	// @Column(name = "personne_dateNaissance")
-	@JsonView(JsonViews.Simple.class)
-	private LocalDate dateNaissance;
 
 
 	public Personne() {
 
 	}
 
-	public Personne(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
-			LocalDate dateNaissance) {
-		super();
+	public Personne(String nom, Integer pointsDeSucces) {
 		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.login = login;
-		this.mdp = mdp;
 		this.pointsDeSucces = pointsDeSucces;
-		this.dateNaissance = dateNaissance;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -76,40 +54,6 @@ public abstract class Personne {
 		this.nom = nom;
 	}
 
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-	
-	
-
 	public Integer getPointsDeSucces() {
 		return pointsDeSucces;
 	}
@@ -118,18 +62,13 @@ public abstract class Personne {
 		this.pointsDeSucces = pointsDeSucces;
 	}
 
-	public LocalDate getDateNaissance() {
-		return dateNaissance;
-	}
-
-	public void setDateNaissance(LocalDate dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-
 	@Override
 	public String toString() {
-		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", login=" + login
-				+ ", mdp=" + mdp + ", pointsDeSucces=" + pointsDeSucces + ", dateNaissance=" + dateNaissance + "]";
+		return "Personne{" +
+				"id=" + id +
+				", nom='" + nom + '\'' +
+				", pointsDeSucces=" + pointsDeSucces +
+				'}';
 	}
 
 	@Override

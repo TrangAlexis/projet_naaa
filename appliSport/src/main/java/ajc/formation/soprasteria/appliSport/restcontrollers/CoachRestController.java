@@ -50,14 +50,14 @@ public class CoachRestController {
     @PostMapping("")
     @JsonView(JsonViews.Coach.class)
     public void create(@Valid @RequestBody Coach coach){
-        coachServices.createOrUpdate(coach);
+        coachServices.createCoach(coach);
     }
 
     @PutMapping("/{id}")
     @JsonView(JsonViews.Coach.class)
     public void update(@PathVariable("id") Long id, @Valid @RequestBody Coach coach){
         coach.setId(id);
-        coachServices.createOrUpdate(coach);
+        coachServices.updateCoach(coach);
     }
 
     @DeleteMapping("")

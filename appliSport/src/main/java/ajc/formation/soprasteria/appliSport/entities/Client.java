@@ -21,19 +21,10 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @AttributeOverrides({
 	@AttributeOverride(name = "id", column = @Column(name = "client_id")),
 	@AttributeOverride(name = "nom", column = @Column(name = "client_nom", nullable = false)),
-	@AttributeOverride(name = "prenom", column = @Column(name = "client_prenom", nullable = false)),
-	@AttributeOverride(name = "email", column = @Column(name = "client_email")),
-	@AttributeOverride(name = "login", column = @Column(name = "client_login", nullable = false)),
-	@AttributeOverride(name = "mdp", column = @Column(name = "client_mdp", nullable = false)),
-	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces")),
-	@AttributeOverride(name = "dateNaissance", column = @Column(name = "client_dateNaissance"))
+	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces"))
 })
 
 public class Client extends Personne{
-	
-	@Column(name = "client_premium")
-	//@JsonView(JsonViews.Client.class)
-	private Boolean premium;
 	@ManyToOne
 	@JoinColumn(name = "client_prog", foreignKey = @ForeignKey(name = "client_programme_fk"))
 //	@Transient
@@ -48,25 +39,16 @@ public class Client extends Personne{
 		
 	}
 
-	
-
-	public Client(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
-			LocalDate dateNaissance, boolean premium, Programme programme) {
-		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
-		this.premium = premium;
-		this.programme = programme;
-	}
-	
-
-	public Client(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
-			LocalDate dateNaissance, boolean premium, Programme programme, Compte compte) {
-		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
-		this.premium = premium;
+	public Client(String nom, Integer pointsDeSucces, Programme programme, Compte compte) {
+		super(nom, pointsDeSucces);
 		this.programme = programme;
 		this.compte = compte;
 	}
 
-
+	public Client(String nom, Integer pointsDeSucces, Programme programme) {
+		super(nom, pointsDeSucces);
+		this.programme = programme;
+	}
 
 	public Compte getCompte() {
 		return compte;
@@ -80,13 +62,7 @@ public class Client extends Personne{
 
 
 
-	public boolean isPremium() {
-		return premium;
-	}
 
-	public void setPremium(boolean premium) {
-		this.premium = premium;
-	}
 
 	public Programme getProgramme() {
 		return programme;
@@ -98,9 +74,9 @@ public class Client extends Personne{
 
 	@Override
 	public String toString() {
-		return "Client [premium=" + premium + ", programme=" + programme + "]";
+		return "Client{" +
+				"programme=" + programme +
+				", compte=" + compte +
+				'}';
 	}
-
-	
-	
 }

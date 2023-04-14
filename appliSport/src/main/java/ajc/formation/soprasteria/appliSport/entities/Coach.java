@@ -27,12 +27,7 @@ import javax.persistence.Transient;
 @AttributeOverrides({
 	@AttributeOverride(name = "id", column = @Column(name = "coach_id")),
 	@AttributeOverride(name = "nom", column = @Column(name = "coach_nom", nullable = false)),
-	@AttributeOverride(name = "prenom", column = @Column(name = "coach_prenom", nullable = false)),
-	@AttributeOverride(name = "email", column = @Column(name = "coach_email")),
-	@AttributeOverride(name = "login", column = @Column(name = "coach_login", nullable = false)),
-	@AttributeOverride(name = "mdp", column = @Column(name = "coach_mdp", nullable = false)),
-	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces")),
-	@AttributeOverride(name = "dateNaissance", column = @Column(name = "coach_dateNaissance"))
+	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces"))
 })
 public class Coach extends Personne {
 
@@ -48,29 +43,22 @@ public class Coach extends Personne {
 	public Coach() {
 		
 	}
-	
 
-	public Coach(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
-			LocalDate dateNaissance) {
-		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
-	}
-
-	
-
-
-	public Coach(String nom, String prenom, String email, String login, String mdp, Integer pointsDeSucces,
-			LocalDate dateNaissance, Set<Programme> programme, Set<Exercice> exercices, Compte compte) {
-		super(nom, prenom, email, login, mdp, pointsDeSucces, dateNaissance);
+	public Coach(String nom, Integer pointsDeSucces, Set<Programme> programme, Set<Exercice> exercices, Compte compte) {
+		super(nom, pointsDeSucces);
 		this.programme = programme;
 		this.exercices = exercices;
 		this.compte = compte;
 	}
 
-
-	public Coach(Set<Programme> programme, Set<Exercice> exercices) {
-		super();
+	public Coach(String nom, Integer pointsDeSucces, Set<Programme> programme, Set<Exercice> exercices) {
+		super(nom, pointsDeSucces);
 		this.programme = programme;
 		this.exercices = exercices;
+	}
+
+	public Coach(String nom, Integer pointsDeSucces) {
+		super(nom, pointsDeSucces);
 	}
 
 	public Set<Programme> getProgramme() {

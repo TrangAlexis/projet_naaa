@@ -50,17 +50,14 @@ public class CoachServices   {
 		coachRepository.delete(coach);
 	}
 
-	public void createOrUpdate(Coach coach) {
+	public void updateCoach(Coach coach) {
 		if (coach.getNom() == null || coach.getNom().isBlank()) {
 			throw new CoachException("nom obligatoire");
 		}
-		if (coach.getPrenom() == null || coach.getPrenom().isBlank()) {
-			throw new CoachException("prenom obligatoire");
-		}
-		if (coach.getLogin() == null || coach.getLogin().isBlank()) {
+		if (coach.getCompte().getLogin() == null || coach.getCompte().getLogin().isBlank()) {
 			throw new CoachException("login obligatoire");
 		}
-		if (coach.getMdp() == null || coach.getMdp().isBlank()) {
+		if (coach.getCompte().getPassword() == null || coach.getCompte().getPassword().isBlank()) {
 			throw new CoachException("mdp obligatoire");
 		}
 		coachRepository.save(coach);

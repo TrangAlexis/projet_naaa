@@ -3,9 +3,6 @@ package ajc.formation.soprasteria.appliSport.restcontrollers;
 import java.util.List;
 
 import javax.validation.Valid;
-
-import ajc.formation.soprasteria.appliSport.entities.Coach;
-import ajc.formation.soprasteria.appliSport.services.CoachServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -79,29 +76,22 @@ public class ClientRestController {
 		if (client.getNom() != null) {
 			clientEnBase.setNom(client.getNom());
 		}
-		if (client.getPrenom() != null) {
-			clientEnBase.setPrenom(client.getPrenom());
+		if (client.getNom() != null) {
+			clientEnBase.setNom(client.getNom());
 		}
-		if (client.getEmail() != null) {
-			clientEnBase.setEmail(client.getEmail());
+		if (client.getCompte().getLogin() != null) {
+			clientEnBase.getCompte().setLogin(client.getCompte().getLogin());
 		}
-		if (client.getLogin() != null) {
-			clientEnBase.setLogin(client.getLogin());
-		}
-		if (client.getMdp() != null) {
-			clientEnBase.setMdp(client.getMdp());
+		if (client.getCompte().getPassword() != null) {
+			clientEnBase.getCompte().setPassword(client.getCompte().getPassword());
 		}
 		if (client.getPointsDeSucces() != null) {
 			clientEnBase.setPointsDeSucces(client.getPointsDeSucces());
 		}
-		if (client.getDateNaissance() != null) {
-			clientEnBase.setDateNaissance(client.getDateNaissance());
-		}
-		clientEnBase.setPremium(client.isPremium());
 		if (client.getProgramme() != null) {
 			clientEnBase.setProgramme(client.getProgramme());
 		}
-		clientSrv.save(clientEnBase);
+		clientSrv.updateClient(clientEnBase);
 		return clientEnBase;
 	}
 	

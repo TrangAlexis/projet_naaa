@@ -3,8 +3,6 @@ package ajc.formation.soprasteria.appliSport.services;
 import java.util.List;
 import java.util.Set;
 
-import ajc.formation.soprasteria.appliSport.entities.Coach;
-import ajc.formation.soprasteria.appliSport.repositories.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +23,15 @@ public class ClientServices {
 	@Autowired
 	private CompteServices compteSrv;
 
-	@Autowired
-	private CoachRepository coachRepository;
-	
-	public void save(Client client) {
-		if (client.getLogin()==null || client.getLogin().isBlank()) {
-			throw new ClientException("Client sans login");
+	public void updateClient(Client client) {
+		if (client.getNom() == null || client.getNom().isBlank()) {
+			throw new ClientException("nom obligatoire");
 		}
-		if (client.getEmail()==null || client.getEmail().isBlank()) {
-			throw new ClientException("Client sans e-mail");
+		if (client.getCompte().getLogin() == null || client.getCompte().getLogin().isBlank()) {
+			throw new ClientException("login obligatoire");
+		}
+		if (client.getCompte().getPassword() == null || client.getCompte().getPassword().isBlank()) {
+			throw new ClientException("mdp obligatoire");
 		}
 		clientRepository.save(client);
 	}

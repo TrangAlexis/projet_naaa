@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ajc.formation.soprasteria.appliSport.entities.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long>{
-    Client findByLogin(String login);
+    // Client findByLogin(String login);
 }
