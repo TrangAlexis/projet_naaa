@@ -2,8 +2,13 @@ package ajc.formation.soprasteria.appliSport.entities;
 
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -29,8 +34,8 @@ import javax.persistence.Transient;
 	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces")),
 	@AttributeOverride(name = "dateNaissance", column = @Column(name = "coach_dateNaissance"))
 })
-public class Coach extends Personne{
-	
+public class Coach extends Personne {
+
     @Transient
 	private Set<Programme> programme;
     @Transient
@@ -102,8 +107,7 @@ public class Coach extends Personne{
 	}
 
 
-	
-	
-	
-	
+
+
+
 }

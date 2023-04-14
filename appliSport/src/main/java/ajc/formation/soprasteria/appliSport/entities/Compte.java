@@ -2,6 +2,7 @@ package ajc.formation.soprasteria.appliSport.entities;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -112,12 +113,11 @@ public class Compte implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_"+this.getClass().getSimpleName()));
+		return Arrays.asList(new SimpleGrantedAuthority(role.toString()));
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return password;
 	}
 
@@ -146,4 +146,32 @@ public class Compte implements UserDetails {
 		return true;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Coach getCoach() {
+		return coach;
+	}
+
+	public void setCoach(Coach coach) {
+		this.coach = coach;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Compte compte = (Compte) o;
+		return Objects.equals(id, compte.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
