@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -28,9 +28,9 @@ public class Programme {
 	private Integer nombreJours;
 	@OneToMany(mappedBy = "programme")
 	private Set<ProgrammeExercice> exercices;
-	@Transient
-	private List<Client> clientDansProgramme;
-	@Transient
+	@OneToMany(mappedBy = "programme")
+	private Set<Client> clientDansProgramme;
+	@OneToMany(mappedBy = "id.programme")
 	private List<Client> clientTermineProgramme;
 	@Transient
 	private Personne coachCreateur;
@@ -39,7 +39,7 @@ public class Programme {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, List<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -83,11 +83,11 @@ public class Programme {
 		this.exercices = exercices;
 	}
 
-	public List<Client> getClientDansProgramme() {
+	public Set<Client> getClientDansProgramme() {
 		return clientDansProgramme;
 	}
 
-	public void setClientDansProgramme(List<Client> clientDansProgramme) {
+	public void setClientDansProgramme(Set<Client> clientDansProgramme) {
 		this.clientDansProgramme = clientDansProgramme;
 	}
 

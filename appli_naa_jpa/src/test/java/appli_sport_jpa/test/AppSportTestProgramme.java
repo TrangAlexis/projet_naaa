@@ -1,14 +1,12 @@
 package appli_sport_jpa.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
@@ -23,29 +21,11 @@ import appli_sport_jpa.services.ProgrammeServices;
 @Rollback
 class AppSportTestProgramme {
 	
-	static AnnotationConfigApplicationContext ctx = null;
 	
+	@Autowired
 	ProgrammeServices programmeServices;
 	
-	
-	@BeforeAll
-	static void initSpring() {
-		ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
-	}
-	@AfterAll
-	static void closeString() {
-		ctx.close();
-	}
-	@BeforeEach
-	void getProgrammeServices() {
-		programmeServices = ctx.getBean(ProgrammeServices.class);
-	}
-	
-	
-	
-	
-	
-	
+
 	@Test
 	void insertProgrammeTest() {
 		Programme programme = new Programme("progr1", 15, null, null, null);

@@ -27,7 +27,7 @@ public class ClientServices {
 
 	
 	public void deleteById(Long id) {
-		Client checkClient = this.findById(id);
+		this.findById(id);
 		clientRepository.deleteById(id);
 	}
 	

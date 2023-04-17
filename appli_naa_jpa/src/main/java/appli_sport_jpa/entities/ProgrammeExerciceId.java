@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class ProgrammeExerciceId implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Programme programme;
 	private Exercice exercice;
 	public ProgrammeExerciceId() {
