@@ -1,20 +1,20 @@
-import { ClientService } from './../services/ClientService';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MustMatch } from '../helpers/must-match.validators';
-import { Client } from '../models/client.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Coach } from '../models/coach.model';
+import { CoachService } from '../services/CoachService';
+import { MustMatch } from '../helpers/must-match.validators';
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.scss']
+  selector: 'app-inscription-coach',
+  templateUrl: './inscription-coach.component.html',
+  styleUrls: ['./inscription-coach.component.scss']
 })
-export class InscriptionComponent implements OnInit {
+export class InscriptionCoachComponent implements OnInit {
   inscriptionForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private coachService: CoachService, private router: Router) { }
 
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
@@ -24,8 +24,7 @@ export class InscriptionComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     },{
       validator: MustMatch('password', 'confirmPassword')
-    }
-    );
+    });
   }
 
   get f() { return this.inscriptionForm.controls; }
@@ -37,16 +36,16 @@ export class InscriptionComponent implements OnInit {
       return;
     }
 
-    const client: Client = {
+    const coach: Coach = {
       nom: this.f['nom'].value,
       compte: {
         login: this.f['login'].value,
         password: this.f['password'].value,
-        role: 0 // CLIENT_FREEMIUM
+        role: 2 // coach
       }
     };
 
-    this.clientService.createClient(client).subscribe((result) => {
+    this.coachService.createCoach(coach).subscribe((result) => {
       this.router.navigate(['/connexion']);
     })
 

@@ -6,7 +6,7 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     const control = controls[controlName];
     const matchingControl = controls[matchingControlName];
 
-    // set error on matchingControl if validation fails
+    // set l'error on matchingControl si la validation fails
     if (control.value !== matchingControl.value) {
       matchingControl.setErrors({ mustMatch: true });
     } else {

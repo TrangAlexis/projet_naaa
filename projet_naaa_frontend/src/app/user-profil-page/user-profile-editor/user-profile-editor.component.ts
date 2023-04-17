@@ -9,12 +9,21 @@ import { Router } from '@angular/router';
 export class UserProfileEditorComponent {
   constructor(private router: Router) {}
   unsubscribeConfirmation() {
+    if (confirm("Êtes-vous sûr de vouloir vous désabonner? Vous perdrez tout les avantages d'un memebre premium...")) {
+      // ici code pour update role user
+      this.router.navigateByUrl('/user-profile-page');
+    } else {
+      // code ici si l'utilisateur annule la suppression ici
+      this.router.navigateByUrl('/user-profile-page'); // ça marche pas
+    }
+  }
+  deleteAccount() {
     if (confirm("Êtes-vous sûr de vouloir supprimer votre compte?")) {
-      // Code pour se delete l'utilisateur ici
+      // code pour deleteById l'user
       this.router.navigateByUrl('');
     } else {
-      // Code si l'utilisateur annule la suppression ici
-      this.router.navigateByUrl('/user-profile-page'); // ça marche pas 
+      // code si l'utilisateur annule la suppression ici
+      this.router.navigateByUrl('/user-profile-page'); // ça marche pas
     }
   }
 }

@@ -10,6 +10,7 @@ import { LeaderboardsPageComponent } from './leaderboards-page/leaderboards-page
 import { UserProfilPageComponent } from './user-profil-page/user-profil-page.component';
 import { ExerciseEditorComponent } from './exercise-editor/exercise-editor.component';
 import { UserProfileEditorComponent } from './user-profil-page/user-profile-editor/user-profile-editor.component';
+import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'leaderboards-page', component: LeaderboardsPageComponent },
   { path: 'user-profil-page', component: UserProfilPageComponent },
   { path: 'app-exercise-editor', component: ExerciseEditorComponent},
-  { path: 'app-user-profile-editor', component: UserProfileEditorComponent}
+  { path: 'app-user-profile-editor', component: UserProfileEditorComponent},
+  { path: 'inscription-coach', component: InscriptionCoachComponent}
 ];
 
 @NgModule({

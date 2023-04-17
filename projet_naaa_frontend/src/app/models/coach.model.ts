@@ -1,4 +1,4 @@
-export class Client {
+export class Coach {
   id?: number;
   nom: string;
   compte: {
@@ -12,7 +12,7 @@ export class Client {
     this.compte = {
       login: login,
       password: password,
-      role: 0 // 0 pour CLIENT_FREEMIUM
+      role: 2 //coahc
     };
   }
 }

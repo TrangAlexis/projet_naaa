@@ -22,6 +22,7 @@ import { ExerciseEditorComponent } from './exercise-editor/exercise-editor.compo
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RouterModule } from '@angular/router';
     ProgramsComponent,
     SearchBarComponent,
     ExerciseEditorComponent,
+    InscriptionCoachComponent,
   ],
   imports: [
     BrowserModule,
