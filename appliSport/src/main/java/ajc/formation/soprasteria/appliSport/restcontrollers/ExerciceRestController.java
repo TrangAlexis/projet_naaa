@@ -47,7 +47,7 @@ public class ExerciceRestController {
 //		return exercice;
 //	}
 	
-	@PostMapping({"", "ajouter"})
+	@PostMapping({"", "/ajouter"})
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Simple.class)
 	public Exercice create(@Valid @RequestBody Exercice exercice, BindingResult br) {

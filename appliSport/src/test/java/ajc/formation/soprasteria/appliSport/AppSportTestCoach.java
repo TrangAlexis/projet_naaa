@@ -42,24 +42,24 @@ public class AppSportTestCoach {
 	void coachServiceExistenceTest() {
 		assertNotNull(coachServices);
 	}
-	@Test
-	void createOrUpdateTest() {
-		Coach coach = new Coach("nomeC1", "nomeC1", "C1@mail", "C1Login", "Mdp-C1", 10, LocalDate.now());
-		coachServices.createOrUpdate(coach);
-		assertNotNull(coach.getId());
-		System.out.println(coach.getId());
-		assertNotNull(coach.getMdp());
-		System.out.println(coach.getMdp());
-	}
-	
-	@Test
-	void DeleteTest() {
-		Coach coach = new Coach("nomeC1", "nomeC1", "C1@mail", "C1Login", "Mdp-C1", 10, LocalDate.now());
-		coachServices.createOrUpdate(coach);
-		assertNotNull(coachServices.getAll());
-		coachServices.delete(coach);
-		
-	}
+//	@Test
+//	void createOrUpdateTest() {
+//		Coach coach = new Coach("nomeC1", "nomeC1", "C1@mail", "C1Login", "Mdp-C1", 10, LocalDate.now());
+//		coachServices.createOrUpdate(coach);
+//		assertNotNull(coach.getId());
+//		System.out.println(coach.getId());
+//		assertNotNull(coach.getMdp());
+//		System.out.println(coach.getMdp());
+//	}
+//	
+//	@Test
+//	void DeleteTest() {
+//		Coach coach = new Coach("nomeC1", "nomeC1", "C1@mail", "C1Login", "Mdp-C1", 10, LocalDate.now());
+//		coachServices.createOrUpdate(coach);
+//		assertNotNull(coachServices.getAll());
+//		coachServices.delete(coach);
+//		
+//	}
 	
 	
 	

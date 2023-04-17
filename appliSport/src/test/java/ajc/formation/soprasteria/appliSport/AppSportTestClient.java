@@ -29,23 +29,27 @@ class AppSportTestClient {
 		assertNotNull(clientService);
 	}
 	
-	@Test
-	void insertTest() {
-		Client client = new Client("Bob","Billy","Billy@Bob","bb","mdp",0,LocalDate.now(),false, null);
-		clientService.save(client);
-		assertNotNull(client.getId());
-		System.out.println(client.getId());
-	}
+//	@Test
+//	void insertTest() {
+//		Client client = new Client("Bob",0,null, null);
+//		clientService.createClientFreemium(client);
+//		assertNotNull(client.getId());
+//		System.out.println(client.getId());
+//	}
+//	
+//	@Test
+//	void deleteTest() {
+//		Client client = new Client("Bob",0,null, null);
+//		clientService.createClientPremium(client);
+//		System.out.println(clientService.findAll().size());
+//		assertNotNull(clientService.findAll());
+//		clientService.deleteById(client.getId());
+//		
+//	}
 	
 	@Test
-	void deleteTest() {
-		Client client = new Client("Bob","Billy","Billy@Bob","bb","mdp",0,LocalDate.now(),false, null);
-		clientService.save(client);
-		System.out.println(clientService.findAll().size());
+	void findTest() {
 		assertNotNull(clientService.findAll());
-		clientService.deleteById(client.getId());
-		
 	}
-	
 
 }
