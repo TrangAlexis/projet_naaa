@@ -32,18 +32,18 @@ export class ExerciseEditorComponent implements OnInit {
 
   onSubmit() {
     this.exerciceService.create(this.exercice).subscribe((result) => {
-      this.router.navigate(['/programs-page']);
-      alert("L'exercice a été ajouté à la base de donnée avec succès!")
+      alert("L'exercice a été ajouté à la base de donnée avec succès!");
+      window.location.reload();
+    }, (error) => {
+      alert("Une erreur s'est produite, t'es pas coach!");
     });
   }
 
   deleteExercice(id:any) {
     if(confirm("Êtes vous sûr de vouloir supprimer l'exercice de la base de donnée? Cette opération est irréversible!")) {
       this.exerciceService.delete(id).subscribe(() => {
-        // Supprission de l'exercice de la liste
         this.exercices = this.exercices.filter(e => e.id !== id);
-        // message de succès consol test
-        console.log('Exercice supprimé avec succès');
+        alert('Exercice supprimé avec succès');
       });
     }
   }

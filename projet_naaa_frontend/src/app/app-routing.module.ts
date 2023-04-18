@@ -11,17 +11,18 @@ import { UserProfilPageComponent } from './user-profil-page/user-profil-page.com
 import { ExerciseEditorComponent } from './exercise-editor/exercise-editor.component';
 import { UserProfileEditorComponent } from './user-profil-page/user-profile-editor/user-profile-editor.component';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
+import { AuthGuardService } from './services/AuthGuardService';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
-  { path: 'home-page', component: HomePageComponent },
-  { path: 'programs-page', component: ProgramsPageComponent },
-  { path: 'leaderboards-page', component: LeaderboardsPageComponent },
-  { path: 'user-profil-page', component: UserProfilPageComponent },
-  { path: 'app-exercise-editor', component: ExerciseEditorComponent},
-  { path: 'app-user-profile-editor', component: UserProfileEditorComponent},
+  { path: 'home-page', component: HomePageComponent, canActivate: [AuthGuardService]  },
+  { path: 'programs-page', component: ProgramsPageComponent, canActivate: [AuthGuardService]   },
+  { path: 'leaderboards-page', component: LeaderboardsPageComponent, canActivate: [AuthGuardService]   },
+  { path: 'user-profil-page', component: UserProfilPageComponent, canActivate: [AuthGuardService]   },
+  { path: 'app-exercise-editor', component: ExerciseEditorComponent, canActivate: [AuthGuardService]  },
+  { path: 'app-user-profile-editor', component: UserProfileEditorComponent, canActivate: [AuthGuardService]  },
   { path: 'inscription-coach', component: InscriptionCoachComponent}
 ];
 

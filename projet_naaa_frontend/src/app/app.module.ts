@@ -19,10 +19,11 @@ import { UserStatusComponent } from './home-page/user-status/user-status.compone
 import { ProgramsComponent } from './programs-page/programs/programs.component';
 import { SearchBarComponent } from './programs-page/search-bar/search-bar.component';
 import { ExerciseEditorComponent } from './exercise-editor/exercise-editor.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
+import { AuthInterceptor } from './interceptors/AuthInterceptors';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { InscriptionCoachComponent } from './inscription-coach/inscription-coach
     CommonModule,
     RouterModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

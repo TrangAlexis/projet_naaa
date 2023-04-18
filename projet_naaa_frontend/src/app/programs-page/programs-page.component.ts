@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Program } from '../models/programs.model';
+import { AuthService } from '../services/AuthService';
 
 @Component({
   selector: 'app-programs-page',
@@ -7,11 +8,16 @@ import { Program } from '../models/programs.model';
   styleUrls: ['./programs-page.component.scss']
 })
 export class ProgramsPageComponent implements OnInit {
+  isCoach!:boolean;
+  constructor(private authService: AuthService) {
+
+  }
 
   ngOnInit(): void {
+    this.isCoach = this.authService.isCoach();
     let sortedPrograms = this.programs.sort((a, b) => b.finishedChallengers - a.finishedChallengers);
   }
-  
+
   getFavoritePrograms(programs: Program[]): Program[] {
     return programs.filter(program => program.isFavorite).concat(programs.filter(program => !program.isFavorite));
   }
@@ -59,7 +65,7 @@ export class ProgramsPageComponent implements OnInit {
       'Super parent',
       '/assets/images/avis.jpg',
       179,
-      2876, 
+      2876,
       true
     ),
     new Program(
