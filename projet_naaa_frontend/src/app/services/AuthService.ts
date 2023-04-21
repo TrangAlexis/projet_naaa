@@ -8,6 +8,14 @@ import { Observable } from "rxjs";
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
+
+  public checkLogin(login: string): Observable<boolean>{
+    return this.httpClient.get<boolean>(
+      'http://localhost:8080/naaa/api/auth/check/'+ login
+    );
+  }
+
+
   public authentication(login: string, password: string): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
