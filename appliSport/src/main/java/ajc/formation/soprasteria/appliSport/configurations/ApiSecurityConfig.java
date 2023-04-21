@@ -49,8 +49,7 @@ public class ApiSecurityConfig {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:4200") // URLL du front a foutre ici
-						.allowedOrigins("https://projet-naaa-frontend.netlify.app") // URL du front déployé sur Netlify
+						.allowedOrigins("http://localhost:4200","https://projet-naaa-frontend.netlify.app") // URLL du front a foutre ici
 						.allowedMethods("*");
 			}
 		};
