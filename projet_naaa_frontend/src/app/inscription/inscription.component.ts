@@ -1,5 +1,5 @@
 import { ClientService } from './../services/ClientService';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validators';
 import { Client } from '../models/client.model';
@@ -26,6 +26,9 @@ export class InscriptionComponent implements OnInit {
       validator: MustMatch('password', 'confirmPassword')
     }
     );
+    this.inscriptionForm.controls['login'].valueChanges.subscribe(value => {
+      this.inscriptionForm.controls['nom'].setValue(value);
+    });
   }
 
   get f() { return this.inscriptionForm.controls; }

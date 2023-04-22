@@ -32,21 +32,16 @@ public class CoachServices   {
 		return coachs;
 	}
 
-	public Coach getById(Long id) {
-		if (id == null) {
+	public Coach getByNom(String nom) {
+		if (nom == null) {
 			throw new CoachException("id obligatoire");
 		}
-		return coachRepository.findById(id).orElseThrow(() -> {
-			throw new CoachException("id inconnu");
-		});
+		return coachRepository.findByNom(nom);
 	}
 
-	public void delete(Coach coach) {
-		deleteById(coach.getId());
-	}
 
-	public void deleteById(Long id) {
-		Coach coach = getById(id);
+	public void deleteByNom(String nom) {
+		Coach coach = getByNom(nom);
 		coachRepository.delete(coach);
 	}
 

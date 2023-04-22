@@ -29,6 +29,8 @@ public class ApiSecurityConfig {
 					.antMatchers(HttpMethod.POST,"/api/coach/inscription").anonymous()
 					.antMatchers(HttpMethod.POST,"/api/exercice/ajouter").hasAnyRole("COACH")
 					.antMatchers(HttpMethod.DELETE,"/api/exercice/ajouter").hasAnyRole("COACH")
+					.antMatchers(HttpMethod.PUT).permitAll()
+					.antMatchers(HttpMethod.DELETE).permitAll()
 					.antMatchers(HttpMethod.GET).permitAll()
 				//	.antMatchers("/api/exercice/**").hasAnyRole("COACH")
 				//	.antMatchers("/api/exercice/**").permitAll()

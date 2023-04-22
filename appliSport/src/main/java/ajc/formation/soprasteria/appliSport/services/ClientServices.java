@@ -58,21 +58,13 @@ public class ClientServices {
 		}
 	}
 
-	public void deleteById(Long id) {
-		Client checkClient = this.findById(id);
-		clientRepository.deleteById(id);
+
+
+
+	public Client findByNom(String nom) {
+		return clientRepository.findByNom(nom);
 	}
-	
-	public void delete(Client client) {
-		this.deleteById(client.getId());
-	}
-		
-	public Client findById(Long id) {
-		return clientRepository.findById(id).orElseThrow(() -> {
-			throw new ClientException("ID manquante dans la base de données de clients: "+id);
-		});
-	}
-	
+
 	public List<Client> findAll(){
 		List<Client> lClients = clientRepository.findAll();
 		if (lClients.isEmpty()) {
@@ -80,5 +72,14 @@ public class ClientServices {
 		}
 		return lClients;
 	}
+
+	public void deleteByNom(String nom) {
+		Client client = findByNom(nom);
+		if(client != null) {
+			clientRepository.delete(client);
+		}
+	}
+
+
 
 }

@@ -25,7 +25,6 @@ import javax.persistence.Transient;
 
 @Table(name = "coach")
 @AttributeOverrides({
-	@AttributeOverride(name = "id", column = @Column(name = "coach_id")),
 	@AttributeOverride(name = "nom", column = @Column(name = "coach_nom", nullable = false)),
 	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces"))
 })

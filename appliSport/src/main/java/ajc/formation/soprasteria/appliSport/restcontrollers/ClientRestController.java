@@ -27,26 +27,26 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @RestController
 @RequestMapping("/api/client")
 public class ClientRestController {
-	
+
 	@Autowired
 	private ClientServices clientSrv;
-	
+
 //	@GetMapping("")
 //	public String Hey() {
 //		return "Hey";
 //	}
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.Client.class)
 	public List<Client> findAll() {
 		return clientSrv.findAll();
 	}
-	
-	@GetMapping("/{id}")
+
+	@GetMapping("/{nom}")
 	@JsonView(JsonViews.Client.class)
-	public Client getById(@PathVariable Long id) {
+	public Client getByNom(@PathVariable String nom) {
 		Client client = null;
-		client = clientSrv.findById(id);
+		client = clientSrv.findByNom(nom);
 		return client;
 	}
 
@@ -69,13 +69,10 @@ public class ClientRestController {
 	}
 
 
-	@PutMapping("/{id}")
+	@PutMapping("/{nom}")
 	@JsonView(JsonViews.Client.class)
-	public Client update(@RequestBody Client client, @PathVariable Long id) {
-		Client clientEnBase = clientSrv.findById(id);
-		if (client.getNom() != null) {
-			clientEnBase.setNom(client.getNom());
-		}
+	public Client update(@RequestBody Client client, @PathVariable String nom) {
+		Client clientEnBase = clientSrv.findByNom(nom);
 		if (client.getNom() != null) {
 			clientEnBase.setNom(client.getNom());
 		}
@@ -84,6 +81,9 @@ public class ClientRestController {
 		}
 		if (client.getCompte().getPassword() != null) {
 			clientEnBase.getCompte().setPassword(client.getCompte().getPassword());
+		}
+		if (client.getCompte().getRole() != null) {
+			clientEnBase.getCompte().setRole(client.getCompte().getRole());
 		}
 		if (client.getPointsDeSucces() != null) {
 			clientEnBase.setPointsDeSucces(client.getPointsDeSucces());
@@ -94,12 +94,19 @@ public class ClientRestController {
 		clientSrv.updateClient(clientEnBase);
 		return clientEnBase;
 	}
-	
-	
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
-		clientSrv.deleteById(id);
+
+	@DeleteMapping("/{nom}")
+	public void deleteClient(@PathVariable String nom) {
+		Client client = clientSrv.findByNom(nom);
+		if (client == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
+		}
+		clientSrv.deleteByNom(nom);
 	}
+
+
+
+
+
 
 }

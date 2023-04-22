@@ -20,7 +20,7 @@ public class CoachRestController {
     CoachServices coachServices;
 
     @GetMapping("")
-	@JsonView(JsonViews.Coach.class)
+    @JsonView(JsonViews.Coach.class)
     public List<Coach> getAll() {
         return coachServices.getAll();
     }
@@ -36,10 +36,10 @@ public class CoachRestController {
         return coach;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{nom}")
     @JsonView(JsonViews.Coach.class)
-    public Coach getById(@PathVariable("id") Long id){
-        return coachServices.getById(id);
+    public Coach getByNom(@PathVariable("nom") String nom){
+        return coachServices.getByNom(nom);
     }
 
 //    @PostMapping("")
@@ -53,24 +53,28 @@ public class CoachRestController {
         coachServices.createCoach(coach);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{nom}")
     @JsonView(JsonViews.Coach.class)
-    public void update(@PathVariable("id") Long id, @Valid @RequestBody Coach coach){
-        coach.setId(id);
+    public void update(@PathVariable("nom") String nom, @Valid @RequestBody Coach coach){
+        coach.setNom(nom);
         coachServices.updateCoach(coach);
     }
 
     @DeleteMapping("")
     @JsonView(JsonViews.Coach.class)
     public void delete(@RequestBody Coach coach){
-        coachServices.delete(coach);
+        coachServices.deleteByNom(coach.getNom());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{nom}")
     @JsonView(JsonViews.Coach.class)
-    public void deleteById(@PathVariable("id") Long id) {
-        coachServices.deleteById(id);
+    public void deleteByNom(@PathVariable("nom") String nom) {
+        Coach coach = coachServices.getByNom(nom);
+        if (coach != null) {
+            coachServices.deleteByNom(nom);
+        }
     }
+
 
 
 }
