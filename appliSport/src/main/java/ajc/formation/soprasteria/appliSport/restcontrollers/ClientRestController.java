@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,8 @@ public class ClientRestController {
 
 	@Autowired
 	private ClientServices clientSrv;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 //	@GetMapping("")
 //	public String Hey() {
@@ -79,8 +82,8 @@ public class ClientRestController {
 		if (client.getCompte().getLogin() != null) {
 			clientEnBase.getCompte().setLogin(client.getCompte().getLogin());
 		}
-		if (client.getCompte().getPassword() != null) {
-			clientEnBase.getCompte().setPassword(client.getCompte().getPassword());
+		if (client.getCompte().getPassword() != null && !client.getCompte().getPassword().isBlank()) {
+			clientEnBase.getCompte().setPassword(passwordEncoder.encode(client.getCompte().getPassword()));
 		}
 		if (client.getCompte().getRole() != null) {
 			clientEnBase.getCompte().setRole(client.getCompte().getRole());

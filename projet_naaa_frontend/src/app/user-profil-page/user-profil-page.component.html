@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div
+<div *ngIf="client"
   class="flex justify-center items-center my-4 gap-4 bg-slate-700 py-4 rounded-xl mx-5 md:w-xl md:mr-auto md:ml-auto xl:w-[900px]"
 >
   <div class="w-20 h-20 rounded-full overflow-hidden bg-gray-300">
@@ -11,7 +11,7 @@
   </div>
   <div class="text-white">
     <h3 class="text-lg font-bold tracking-widest capitalize">
-      {{ user.login }}
+      {{ client.nom }}
     </h3>
     <p class="text-md">Niveau 82 - La Conquérante</p>
     <p class="text-sm">Membre {{ user.role }}</p>
@@ -22,7 +22,7 @@
   class="rounded-lg shadow-md p-6 mx-5 bg-slate-700 md:w-xl md:mr-auto md:ml-auto xl:w-[900px]"
 >
   <div class="flex flex-col gap-4 justify-center items-center">
-    <button *ngIf="user.role !== 'ROLE_CLIENTPREMIUM'"
+    <button *ngIf="user.role == 'ROLE_CLIENTFREEMIUM'"
       class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-[300px]"
       routerLink="/subscribe"
     >

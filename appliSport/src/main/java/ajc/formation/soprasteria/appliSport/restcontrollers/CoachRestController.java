@@ -53,11 +53,31 @@ public class CoachRestController {
         coachServices.createCoach(coach);
     }
 
+
     @PutMapping("/{nom}")
     @JsonView(JsonViews.Coach.class)
-    public void update(@PathVariable("nom") String nom, @Valid @RequestBody Coach coach){
-        coach.setNom(nom);
-        coachServices.updateCoach(coach);
+    public Coach update(@RequestBody Coach coach, @PathVariable String nom) {
+        Coach coachEnBase = coachServices.getByNom(nom);
+        if (coach.getNom() != null) {
+            coachEnBase.setNom(coach.getNom());
+        }
+        if (coach.getCompte().getLogin() != null) {
+            coachEnBase.getCompte().setLogin(coach.getCompte().getLogin());
+        }
+        if (coach.getCompte().getPassword() != null) {
+            coachEnBase.getCompte().setPassword(coach.getCompte().getPassword());
+        }
+        if (coach.getCompte().getRole() != null) {
+            coachEnBase.getCompte().setRole(coach.getCompte().getRole());
+        }
+        if (coach.getPointsDeSucces() != null) {
+            coachEnBase.setPointsDeSucces(coach.getPointsDeSucces());
+        }
+        if (coach.getProgramme() != null) {
+            coachEnBase.setProgramme(coach.getProgramme());
+        }
+        coachServices.updateCoach(coachEnBase);
+        return coachEnBase;
     }
 
     @DeleteMapping("")

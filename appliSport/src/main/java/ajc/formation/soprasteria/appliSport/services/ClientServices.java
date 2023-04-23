@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.appliSport.entities.Client;
@@ -23,6 +24,9 @@ public class ClientServices {
 	@Autowired
 	private CompteServices compteSrv;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	public void updateClient(Client client) {
 		if (client.getNom() == null || client.getNom().isBlank()) {
 			throw new ClientException("nom obligatoire");
@@ -34,6 +38,16 @@ public class ClientServices {
 			throw new ClientException("mdp obligatoire");
 		}
 		clientRepository.save(client);
+	}
+
+	public void updateClientPassword(String nom, String newPassword) {
+		Client client = findByNom(nom);
+		client.getCompte().setPassword(passwordEncoder.encode(newPassword));
+		clientRepository.save(client);
+	}
+
+	public void updateClientRole(Client client) {
+
 	}
 
 	public Client createClientFreemium(Client client) {
