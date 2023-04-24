@@ -11,6 +11,11 @@ export class ClientService {
   private baseUrl = 'http://localhost:8080/naaa/api/client';
 
   constructor(private http: HttpClient) { }
+  public checkLogin(login: string): Observable<boolean>{
+    return this.http.get<boolean>(
+      'http://localhost:8080/naaa/api/auth/check/'+ login
+    );
+  }
 
   getClients(): Observable<Client[]> {
     return this.http.get<Client[]>(`${this.baseUrl}`);

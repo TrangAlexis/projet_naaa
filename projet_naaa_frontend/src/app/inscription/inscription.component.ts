@@ -1,13 +1,8 @@
 import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/AuthService';
 import { ClientService } from './../services/ClientService';
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
-=======
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
->>>>>>> main
 import { MustMatch } from '../helpers/must-match.validators';
 import { Client } from '../models/client.model';
 import { Router } from '@angular/router';
@@ -21,12 +16,12 @@ export class InscriptionComponent implements OnInit {
   inscriptionForm!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private clientSrv: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private clientService: ClientService, private router: Router) { }
 
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
       nom: ['', Validators.required],
-      login: ['', Validators.required],
+      login: ['', Validators.required,this.loginFree(this.clientService)],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     },{
@@ -62,10 +57,10 @@ export class InscriptionComponent implements OnInit {
 
   }
 
-  loginFree(srv: AuthService): AsyncValidatorFn{
+  loginFree(srv: ClientService): AsyncValidatorFn{
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       console.debug('check');
-      return this.clientSrv.checkLogin(control.value).pipe(
+      return this.clientService.checkLogin(control.value).pipe(
         map((exist:boolean)=> {
           return exist ? {loginExist: true} : null;
         })

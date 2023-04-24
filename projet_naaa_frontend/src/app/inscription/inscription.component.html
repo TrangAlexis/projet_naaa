@@ -9,21 +9,13 @@
     </h2>
       <div class="">
       <input
-       type="hidden"
+        type="hidden"
         formControlName="nom"
         id="nom"
         name="nom"
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         [ngClass]="{ 'border-red-500': submitted && f['nom'].errors }"
       />
-      <div
-        *ngIf="submitted && f['nom'].errors"
-        class="text-red-500 text-sm mt-1"
-      >
-        <div *ngIf="f['nom'].errors; ">
-          Nom d'utilisateur est obligatoire
-        </div>
-      </div>
     </div>
     <div class="mt-4">
       <label for="login" class="block text-gray-700">Login</label>
@@ -39,9 +31,17 @@
         *ngIf="submitted && f['login'].errors"
         class="text-red-500 text-sm mt-1"
       >
-        <div *ngIf="f['login'].errors; required">
+      <div
+      *ngIf="
+
+        inscriptionForm.get('inscriptionForm.login')?.hasError('loginFree')
+      "
+      >L'identifiant de connexion n'est pas disponible</div
+    >
+        <div *ngIf="f['login'].errors && f['login'].pristine required">
           L'identifiant de connexion est obligatoire
         </div>
+
       </div>
     </div>
     <div class="mt-4">
