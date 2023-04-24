@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
+
   public authentication(login: string, password: string): Observable<any> {
     let headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
