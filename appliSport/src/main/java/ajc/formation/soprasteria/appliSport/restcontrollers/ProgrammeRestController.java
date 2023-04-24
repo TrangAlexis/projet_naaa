@@ -31,15 +31,23 @@ public class ProgrammeRestController {
 	private ProgrammeServices programmeSrv;
 	
 	@GetMapping("")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	public List<Programme> getAll(){
 		return programmeSrv.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	@JsonView(JsonViews.Programme.class)
+	public Programme getById(@PathVariable Long id){
+		Programme programme = null;
+		programme = programmeSrv.findById(id);
+		return programme;
 	}
 	
 	
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	public Programme create(@Valid @RequestBody Programme programme, BindingResult br) {
 		if(br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

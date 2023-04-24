@@ -13,6 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+
 
 @Entity
 @Table(name="programme")
@@ -20,10 +24,13 @@ public class Programme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="programme_id")
+	@JsonView(JsonViews.Programme.class)
 	private Long id;
 	@Column(name="programme_name")
+	@JsonView(JsonViews.Programme.class)
 	private String nom;
 	@Column(name="programme_duree")
+	@JsonView(JsonViews.Programme.class)
 	private Integer nombreJours;
 	@Transient
 	@OneToMany(mappedBy = "programme")

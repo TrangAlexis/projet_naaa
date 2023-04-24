@@ -14,4 +14,8 @@ public class JsonViews {
 	public static class Coach extends Simple {
 
 	}
+	
+	public class Programme{
+		
+	}
 }

@@ -6,12 +6,14 @@
   </div>
 
   <div class="mx-5">
+    
+
     <div class="mt-8 w-full md:w-[700px] rounded-xl ml-auto mr-auto">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 rounded-xl">
       <h2 class="text-center text-2xl font-extrabold text-gray-700 pb-2">
         Créer un exercice
       </h2>
-      <form class="space-y-6" (ngSubmit)="onSubmit()">
+      <form class="space-y-6" (ngSubmit)="onSubmitExercice()">
         <div>
           <label
             for="exerciseName"
@@ -46,7 +48,7 @@
               autocomplete="off"
               required
               [(ngModel)]="exercice.description"
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              class="resize-none appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             ></textarea>
           </div>
         </div>

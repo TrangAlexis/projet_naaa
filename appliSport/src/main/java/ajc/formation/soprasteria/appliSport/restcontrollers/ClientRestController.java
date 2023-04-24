@@ -101,5 +101,4 @@ public class ClientRestController {
 	public void delete(@PathVariable Long id) {
 		clientSrv.deleteById(id);
 	}
-
 }

@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptors';
+import { ProgrammeEditorComponent } from './programme-editor/programme-editor.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AuthInterceptor } from './interceptors/AuthInterceptors';
     SearchBarComponent,
     ExerciseEditorComponent,
     InscriptionCoachComponent,
+    ProgrammeEditorComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { ExerciseEditorComponent } from './exercise-editor/exercise-editor.compo
 import { UserProfileEditorComponent } from './user-profil-page/user-profile-editor/user-profile-editor.component';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 import { AuthGuardService } from './services/AuthGuardService';
+import { ProgrammeEditorComponent } from './programme-editor/programme-editor.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'leaderboards-page', component: LeaderboardsPageComponent, canActivate: [AuthGuardService]   },
   { path: 'user-profil-page', component: UserProfilPageComponent, canActivate: [AuthGuardService]   },
   { path: 'app-exercise-editor', component: ExerciseEditorComponent, canActivate: [AuthGuardService]  },
+  { path: 'app-programme-editor', component: ProgrammeEditorComponent, canActivate: [AuthGuardService]  },
   { path: 'app-user-profile-editor', component: UserProfileEditorComponent, canActivate: [AuthGuardService]  },
   { path: 'inscription-coach', component: InscriptionCoachComponent}
 ];
