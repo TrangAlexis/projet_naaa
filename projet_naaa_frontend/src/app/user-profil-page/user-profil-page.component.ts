@@ -14,6 +14,9 @@ export class UserProfilPageComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
+  points: number =93;
+  level!:string;
+
   constructor(private authService: AuthService, private router: Router,
     private coachService: CoachService,
     private clientService: ClientService ) {}
@@ -39,5 +42,26 @@ export class UserProfilPageComponent implements OnInit {
   public onLogout() {
     this.authService.logout();
     this.router.navigate(['/connexion']);
+  }
+
+
+  passerDesLevels(){
+    switch(true){
+      case (this.points < 0 || this.points > 100):
+        return this.level = "Score invalide";
+      break;
+      case (this.points < 50):
+        return this.level = "Niveau 1 - Petit muscle";
+      break;
+      case (this.points < 80):
+        return this.level = "Niveau 2 - mieux";
+      break;
+      case (this.points > 80):
+        return this.level = "Niveau 3 - champioooon";
+      break;
+      default:
+        return this.level = "Niveau 1";
+      break;
+    }
   }
 }
