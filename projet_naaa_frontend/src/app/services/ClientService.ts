@@ -16,19 +16,19 @@ export class ClientService {
     return this.http.get<Client[]>(`${this.baseUrl}`);
   }
 
-  getClientById(id: number): Observable<Client> {
-    return this.http.get<Client>(`${this.baseUrl}/${id}`);
+  getClientByNom(nom: string): Observable<Client> {
+    return this.http.get<Client>(`${this.baseUrl}/${nom}`);
   }
 
   createClient(client: Client): Observable<Client> {
     return this.http.post<Client>(`${this.baseUrl}/inscription`, client);
   }
 
-  updateClient(id: number, client: Client): Observable<Client> {
-    return this.http.put<Client>(`${this.baseUrl}/${id}`, client);
+  updateClient(nom: string, client: Client): Observable<Client> {
+    return this.http.put<Client>(`${this.baseUrl}/${nom}`, client);
   }
 
-  deleteClient(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  deleteClient(nom: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${nom}`, { responseType: 'text' });
   }
 }

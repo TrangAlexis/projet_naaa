@@ -6,6 +6,7 @@ import java.util.Set;
 import ajc.formation.soprasteria.appliSport.entities.Client;
 import ajc.formation.soprasteria.appliSport.exceptions.ClientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.appliSport.entities.Coach;
@@ -23,6 +24,9 @@ public class CoachServices   {
 
 	@Autowired
 	private CompteServices compteSrv;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public List<Coach> getAll() {
 		 List<Coach> coachs = coachRepository.findAll();
@@ -32,21 +36,16 @@ public class CoachServices   {
 		return coachs;
 	}
 
-	public Coach getById(Long id) {
-		if (id == null) {
+	public Coach getByNom(String nom) {
+		if (nom == null) {
 			throw new CoachException("id obligatoire");
 		}
-		return coachRepository.findById(id).orElseThrow(() -> {
-			throw new CoachException("id inconnu");
-		});
+		return coachRepository.findByNom(nom);
 	}
 
-	public void delete(Coach coach) {
-		deleteById(coach.getId());
-	}
 
-	public void deleteById(Long id) {
-		Coach coach = getById(id);
+	public void deleteByNom(String nom) {
+		Coach coach = getByNom(nom);
 		coachRepository.delete(coach);
 	}
 
@@ -60,6 +59,7 @@ public class CoachServices   {
 		if (coach.getCompte().getPassword() == null || coach.getCompte().getPassword().isBlank()) {
 			throw new CoachException("mdp obligatoire");
 		}
+		coach.getCompte().setPassword(passwordEncoder.encode(coach.getCompte().getPassword()));
 		coachRepository.save(coach);
 	}
 

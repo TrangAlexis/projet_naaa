@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Client } from "../models/client.model";
+import { Coach } from "../models/coach.model";
 
 @Injectable({
   providedIn: 'root',
@@ -12,20 +12,20 @@ export class CoachService {
 
   constructor(private http: HttpClient) { }
 
-  getCoachs(): Observable<Client[]> {
-    return this.http.get<Client[]>(`${this.baseUrl}`);
+  getCoachs(): Observable<Coach[]> {
+    return this.http.get<Coach[]>(`${this.baseUrl}`);
   }
 
-  getCoachById(id: number): Observable<Client> {
-    return this.http.get<Client>(`${this.baseUrl}/${id}`);
+  getCoachByNom(nom: string): Observable<Coach> {
+    return this.http.get<Coach>(`${this.baseUrl}/${nom}`);
   }
 
-  createCoach(client: Client): Observable<Client> {
-    return this.http.post<Client>(`${this.baseUrl}/inscription`, client);
+  createCoach(coach: Coach): Observable<Coach> {
+    return this.http.post<Coach>(`${this.baseUrl}/inscription`, coach);
   }
 
-  updateCoach(id: number, client: Client): Observable<Client> {
-    return this.http.put<Client>(`${this.baseUrl}/${id}`, client);
+  updateCoach(id: number, coach: Coach): Observable<Coach> {
+    return this.http.put<Coach>(`${this.baseUrl}/${id}`, coach);
   }
 
   deleteCoach(id: number): Observable<any> {

@@ -19,9 +19,6 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 
 public abstract class Personne {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.Simple.class)
-	private Long id;
 	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	// @Column(name = "personne_pointsDeSucces")
@@ -38,13 +35,6 @@ public abstract class Personne {
 		this.pointsDeSucces = pointsDeSucces;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNom() {
 		return nom;
@@ -63,29 +53,15 @@ public abstract class Personne {
 	}
 
 	@Override
-	public String toString() {
-		return "Personne{" +
-				"id=" + id +
-				", nom='" + nom + '\'' +
-				", pointsDeSucces=" + pointsDeSucces +
-				'}';
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Personne personne = (Personne) o;
+		return Objects.equals(nom, personne.nom);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(nom);
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Personne other = (Personne) obj;
-		return Objects.equals(id, other.id);
-	}
-
 }

@@ -2,6 +2,8 @@ package ajc.formation.soprasteria.appliSport.services;
 
 import javax.validation.Validator;
 
+import ajc.formation.soprasteria.appliSport.entities.Client;
+import ajc.formation.soprasteria.appliSport.exceptions.ClientException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,19 @@ public class CompteServices {
 	public Compte createCoach(Compte compte) {
 		compte.setRole(Role.ROLE_COACH);
 		return create(compte);
+	}
+
+	public void updateCompte(Compte compte) {
+		if (compte.getLogin() == null || compte.getLogin().isBlank()) {
+			throw new ClientException("nom obligatoire");
+		}
+		if (compte.getPassword() == null || compte.getPassword().isBlank()) {
+			throw new ClientException("login obligatoire");
+		}
+		if (compte.getRole() == null) {
+			throw new ClientException("mdp obligatoire");
+		}
+		compteRepo.save(compte);
 	}
 
 	private Compte create(Compte compte) {
