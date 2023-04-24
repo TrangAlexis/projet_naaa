@@ -89,10 +89,13 @@ public class ClientServices {
 
 	public void deleteByNom(String nom) {
 		Client client = findByNom(nom);
-		if(client != null) {
+		if (client != null) {
 			clientRepository.delete(client);
+			compteSrv.deleteCompte(client.getCompte().getLogin());
 		}
 	}
+
+
 
 
 

@@ -66,4 +66,13 @@ public class CompteServices {
 			throw new CompteExceptions();
 		});
 	}
+
+
+	public void deleteCompte(String login) {
+		Compte compte = findByLogin(login);
+		if (compte != null) {
+			compteRepo.delete(compte);
+		}
+	}
+
 }
