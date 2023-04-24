@@ -7,7 +7,7 @@
     <h2 class="text-xl text-gray-700 font-bold mb-10 text-center">
       Inscription
     </h2>
-      <div class="">
+    <div class="">
       <input
         type="hidden"
         formControlName="nom"
@@ -31,17 +31,12 @@
         *ngIf="submitted && f['login'].errors"
         class="text-red-500 text-sm mt-1"
       >
-      <div
-      *ngIf="
-
-        inscriptionForm.get('inscriptionForm.login')?.hasError('loginFree')
-      "
-      >L'identifiant de connexion n'est pas disponible</div
-    >
-        <div *ngIf="f['login'].errors && f['login'].pristine required">
+        <div *ngIf="inscriptionForm.get('login')?.hasError('loginExist')">
+          L'identifiant de connexion n'est pas disponible
+        </div>
+        <div *ngIf="f['login'].errors && f['login'].pristine; required">
           L'identifiant de connexion est obligatoire
         </div>
-
       </div>
     </div>
     <div class="mt-4">
