@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Programme } from '../models/programmes.model';
+import { Exercice } from '../models/exercise.model';
+import { ExerciceService } from '../services/ExerciceService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-programme-editor',
@@ -17,8 +20,16 @@ export class ProgrammeEditorComponent {
     isFavorite: false
   };
 
+  exercices!: Exercice[];
+
+  // addExercice(){
+  //   this.exercices.push(new Exercice())
+  // }
+
   onSubmitProgramme() {
     
   }
+
+
 
 }

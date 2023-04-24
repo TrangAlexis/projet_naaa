@@ -26,8 +26,7 @@ const routes: Routes = [
   { path: 'user-profil-page', component: UserProfilPageComponent, canActivate: [AuthGuardService]   },
   { path: 'app-exercise-editor', component: ExerciseEditorComponent, canActivate: [AuthGuardService]  },
   { path: 'app-programme-editor', component: ProgrammeEditorComponent, canActivate: [AuthGuardService]  },
-  { path: 'app-user-profile-editor', component: UserProfileEditorComponent, canActivate: [AuthGuardService]  },
-  { path: 'inscription-coach', component: InscriptionCoachComponent}
+  { path: 'inscription-coach', component: InscriptionCoachComponent},
   { path: 'inscription-coach', component: InscriptionCoachComponent},
   { path: 'subscribe', component: SubscribeComponent, canActivate: [AuthGuardService] },
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuardService] },
