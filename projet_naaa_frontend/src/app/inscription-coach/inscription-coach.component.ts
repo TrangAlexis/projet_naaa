@@ -25,6 +25,9 @@ export class InscriptionCoachComponent implements OnInit {
     },{
       validator: MustMatch('password', 'confirmPassword')
     });
+    this.inscriptionForm.controls['login'].valueChanges.subscribe(value => {
+      this.inscriptionForm.controls['nom'].setValue(value);
+    });
   }
 
   get f() { return this.inscriptionForm.controls; }

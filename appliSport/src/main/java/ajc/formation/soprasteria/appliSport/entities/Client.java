@@ -2,15 +2,7 @@ package ajc.formation.soprasteria.appliSport.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -19,7 +11,6 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @Entity
 @Table(name = "client")
 @AttributeOverrides({
-	@AttributeOverride(name = "id", column = @Column(name = "client_id")),
 	@AttributeOverride(name = "nom", column = @Column(name = "client_nom", nullable = false)),
 	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces"))
 })

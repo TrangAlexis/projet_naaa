@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,26 +28,28 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @RestController
 @RequestMapping("/api/client")
 public class ClientRestController {
-	
+
 	@Autowired
 	private ClientServices clientSrv;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 //	@GetMapping("")
 //	public String Hey() {
 //		return "Hey";
 //	}
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.Client.class)
 	public List<Client> findAll() {
 		return clientSrv.findAll();
 	}
-	
-	@GetMapping("/{id}")
+
+	@GetMapping("/{nom}")
 	@JsonView(JsonViews.Client.class)
-	public Client getById(@PathVariable Long id) {
+	public Client getByNom(@PathVariable String nom) {
 		Client client = null;
-		client = clientSrv.findById(id);
+		client = clientSrv.findByNom(nom);
 		return client;
 	}
 
@@ -69,21 +72,21 @@ public class ClientRestController {
 	}
 
 
-	@PutMapping("/{id}")
+	@PutMapping("/{nom}")
 	@JsonView(JsonViews.Client.class)
-	public Client update(@RequestBody Client client, @PathVariable Long id) {
-		Client clientEnBase = clientSrv.findById(id);
-		if (client.getNom() != null) {
-			clientEnBase.setNom(client.getNom());
-		}
+	public Client update(@RequestBody Client client, @PathVariable String nom) {
+		Client clientEnBase = clientSrv.findByNom(nom);
 		if (client.getNom() != null) {
 			clientEnBase.setNom(client.getNom());
 		}
 		if (client.getCompte().getLogin() != null) {
 			clientEnBase.getCompte().setLogin(client.getCompte().getLogin());
 		}
-		if (client.getCompte().getPassword() != null) {
-			clientEnBase.getCompte().setPassword(client.getCompte().getPassword());
+		if (client.getCompte().getPassword() != null && !client.getCompte().getPassword().isBlank()) {
+			clientEnBase.getCompte().setPassword(passwordEncoder.encode(client.getCompte().getPassword()));
+		}
+		if (client.getCompte().getRole() != null) {
+			clientEnBase.getCompte().setRole(client.getCompte().getRole());
 		}
 		if (client.getPointsDeSucces() != null) {
 			clientEnBase.setPointsDeSucces(client.getPointsDeSucces());
@@ -94,12 +97,19 @@ public class ClientRestController {
 		clientSrv.updateClient(clientEnBase);
 		return clientEnBase;
 	}
-	
-	
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
-		clientSrv.deleteById(id);
+
+	@DeleteMapping("/{nom}")
+	public void deleteClient(@PathVariable String nom) {
+		Client client = clientSrv.findByNom(nom);
+		if (client == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
+		}
+		clientSrv.deleteByNom(nom);
 	}
+
+
+
+
+
 
 }

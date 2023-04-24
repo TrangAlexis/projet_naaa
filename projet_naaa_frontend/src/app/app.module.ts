@@ -24,6 +24,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptors';
+import { SubscribeComponent } from './subscribe/subscribe.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { AuthInterceptor } from './interceptors/AuthInterceptors';
     SearchBarComponent,
     ExerciseEditorComponent,
     InscriptionCoachComponent,
+    SubscribeComponent,
+    PaymentComponent,
+    ProfilEditorComponent,
   ],
   imports: [
     BrowserModule,

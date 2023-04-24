@@ -1,8 +1,13 @@
 import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/AuthService';
 import { ClientService } from './../services/ClientService';
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+=======
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+>>>>>>> main
 import { MustMatch } from '../helpers/must-match.validators';
 import { Client } from '../models/client.model';
 import { Router } from '@angular/router';
@@ -28,6 +33,9 @@ export class InscriptionComponent implements OnInit {
       validator: MustMatch('password', 'confirmPassword')
     }
     );
+    this.inscriptionForm.controls['login'].valueChanges.subscribe(value => {
+      this.inscriptionForm.controls['nom'].setValue(value);
+    });
   }
 
   get f() { return this.inscriptionForm.controls; }
