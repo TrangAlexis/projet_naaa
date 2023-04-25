@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -35,11 +36,14 @@ public class Exercice {
 	@Lob // Big stockage de donnée (ici text) dans uen colonne de bdd
 	@JsonView(JsonViews.Simple.class)
 	private String description;
+	@ManyToOne
+	private ProgrammeSimplifie programmeSimplifies;
 	
-	
+//	
 //	@Transient
-	@ManyToMany
-	private Set<Programme> programmes;
+//	@ManyToMany
+//	private Set<Programme> programmes;
+	
 	
 	public Exercice() {
 		

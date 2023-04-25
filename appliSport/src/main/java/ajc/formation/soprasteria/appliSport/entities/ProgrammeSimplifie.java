@@ -6,11 +6,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,8 +20,8 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 
 
 @Entity
-@Table(name="programme")
-public class Programme {
+@Table(name="programme_simplifie")
+public class ProgrammeSimplifie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="programme_id")
@@ -41,14 +39,11 @@ public class Programme {
 	@Column(name="url_image")
 	@JsonView(JsonViews.Programme.class)
 	private String urlImage;
-	
-	
-	
-	
-	@Transient
-	@ManyToMany(mappedBy="programmes")
-//	@JsonView(JsonViews.Programme.class)
+	@Column(name="exos")
+	@OneToMany(mappedBy="programmeSimplifies")
+	@JsonView(JsonViews.Programme.class)
 	private Set<Exercice> exercices;
+	
 	@Transient
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
@@ -57,11 +52,11 @@ public class Programme {
 	@Transient
 	private Coach coachCreateur;
 	
-	public Programme() {
+	public ProgrammeSimplifie() {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<Exercice> exercices, Set<Client> clientDansProgramme,
+	public ProgrammeSimplifie(String nom, Integer nombreJours, Set<Exercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -72,11 +67,13 @@ public class Programme {
 	}
 
 
+
 	public Integer getNombreJours() {
 		return nombreJours;
 	}
 
-
+	
+	
 	public void setNombreJours(Integer nombreJours) {
 		this.nombreJours = nombreJours;
 	}
@@ -120,6 +117,33 @@ public class Programme {
 	public void setClientTermineProgramme(List<Client> clientTermineProgramme) {
 		this.clientTermineProgramme = clientTermineProgramme;
 	}
+	
+	
+	public Long getPoints() {
+		return points;
+	}
+
+	public void setPoints(Long points) {
+		this.points = points;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+
+
+
+	public Coach getCoachCreateur() {
+		return coachCreateur;
+	}
+
+	public void setCoachCreateur(Coach coachCreateur) {
+		this.coachCreateur = coachCreateur;
+	}
 
 	@Override
 	public String toString() {
@@ -140,10 +164,10 @@ public class Programme {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Programme other = (Programme) obj;
+		ProgrammeSimplifie other = (ProgrammeSimplifie) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
+
+	
 }
