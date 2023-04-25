@@ -1,27 +1,24 @@
 package ajc.formation.soprasteria.appliSport.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import ajc.formation.soprasteria.appliSport.entities.ProgrammeExercice;
-import ajc.formation.soprasteria.appliSport.repositories.ProgrammeExerciceRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Service;
-
-import ajc.formation.soprasteria.appliSport.entities.Exercice;
-import ajc.formation.soprasteria.appliSport.entities.Programme;
-import ajc.formation.soprasteria.appliSport.exceptions.ProgrammeException;
-import ajc.formation.soprasteria.appliSport.repositories.ExerciceRepository;
-import ajc.formation.soprasteria.appliSport.repositories.ProgrammeRepository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Service;
+
+import ajc.formation.soprasteria.appliSport.entities.Programme;
+import ajc.formation.soprasteria.appliSport.exceptions.ProgrammeException;
+import ajc.formation.soprasteria.appliSport.repositories.ProgrammeExerciceRepository;
+import ajc.formation.soprasteria.appliSport.repositories.ProgrammeRepository;
+
 @Service
-public class ProgrammeServices {
+public class ProgrammeServices implements CommandLineRunner {
 
 	@Autowired
 	private ProgrammeRepository programmeRepo;
@@ -82,11 +79,13 @@ public class ProgrammeServices {
 	}
 
 	public void delete(Programme programme) {
-		deleteById(programme.getId());
+		programmeExerciceRepository.deleteByProgramme(programme);
+		programmeRepo.delete(programme);
 	}
 
 	public void deleteById(Long id) {
-		Programme checkProgramme = this.findById(id);
+		this.findById(id);
+		programmeExerciceRepository.deleteByProgramme(this.findById(id));
 		programmeRepo.delete(findById(id));
 	}
 

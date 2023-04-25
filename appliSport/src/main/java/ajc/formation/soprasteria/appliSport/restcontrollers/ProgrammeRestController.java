@@ -46,6 +46,12 @@ public class ProgrammeRestController {
 	ExerciceServices exerciceServices;
 
 
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) {
+		programmeSrv.deleteById(id);
+	}
+	
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Programme.class)

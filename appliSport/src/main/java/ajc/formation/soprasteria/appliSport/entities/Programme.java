@@ -29,18 +29,17 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 public class Programme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.Simple.class)
-	@Column(name="programme_id")
 	@JsonView(JsonViews.Programme.class)
+	@Column(name="programme_id")
 	private Long id;
 	@Column(name="programme_name")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private String nom;
 	@Column(name="programme_duree")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private Integer nombreJours;
 	@OneToMany(mappedBy = "id.programme")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private Set<ProgrammeExercice> exercices;
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
@@ -53,7 +52,7 @@ public class Programme {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<Exercice> exercices, Set<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -89,11 +88,11 @@ public class Programme {
 		this.nom = nom;
 	}
 
-	public Set<Exercice> getExercices() {
+	public Set<ProgrammeExercice> getExercices() {
 		return exercices;
 	}
 
-	public void setExercices(Set<Exercice> exercices) {
+	public void setExercices(Set<ProgrammeExercice> exercices) {
 		this.exercices = exercices;
 	}
 
