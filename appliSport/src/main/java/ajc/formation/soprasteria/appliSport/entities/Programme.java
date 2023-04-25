@@ -1,5 +1,8 @@
 package ajc.formation.soprasteria.appliSport.entities;
 
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -26,30 +29,19 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 public class Programme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Simple.class)
 	@Column(name="programme_id")
 	@JsonView(JsonViews.Programme.class)
 	private Long id;
 	@Column(name="programme_name")
-	@JsonView(JsonViews.Programme.class)
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	@Column(name="programme_duree")
-	@JsonView(JsonViews.Programme.class)
+	@JsonView(JsonViews.Simple.class)
 	private Integer nombreJours;
-	@Column(name="programme_points")
-	@JsonView(JsonViews.Programme.class)
-	private Long points;
-	@Column(name="url_image")
-	@JsonView(JsonViews.Programme.class)
-	private String urlImage;
-	
-	
-	
-	
-	@Transient
-	@ManyToMany(mappedBy="programmes")
-//	@JsonView(JsonViews.Programme.class)
-	private Set<Exercice> exercices;
-	@Transient
+	@OneToMany(mappedBy = "id.programme")
+	@JsonView(JsonViews.Simple.class)
+	private Set<ProgrammeExercice> exercices;
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
 	@Transient

@@ -12,6 +12,11 @@ export class CoachService {
 
   constructor(private http: HttpClient) { }
 
+  public checkLogin(login: string): Observable<boolean>{
+    return this.http.get<boolean>(
+      'http://localhost:8080/naaa/api/auth/check/'+ login
+    );
+  }
   getCoachs(): Observable<Coach[]> {
     return this.http.get<Coach[]>(`${this.baseUrl}`);
   }

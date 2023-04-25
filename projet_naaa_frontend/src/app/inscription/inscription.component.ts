@@ -1,6 +1,8 @@
+import { map, Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/AuthService';
 import { ClientService } from './../services/ClientService';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validators';
 import { Client } from '../models/client.model';
 import { Router } from '@angular/router';
@@ -19,7 +21,7 @@ export class InscriptionComponent implements OnInit {
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
       nom: ['', Validators.required],
-      login: ['', Validators.required],
+      login: ['', Validators.required,this.loginFree(this.clientService)],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     },{
@@ -54,4 +56,16 @@ export class InscriptionComponent implements OnInit {
     })
 
   }
+
+  loginFree(srv: ClientService): AsyncValidatorFn{
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      console.debug('check');
+      return this.clientService.checkLogin(control.value).pipe(
+        map((exist:boolean)=> {
+          return exist ? {loginExist: true} : null;
+        })
+      );
+    };
+  }
+
 }

@@ -1,5 +1,7 @@
+import { Observable, map } from 'rxjs';
+import { AuthService } from 'src/app/services/AuthService';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Coach } from '../models/coach.model';
 import { CoachService } from '../services/CoachService';
@@ -19,7 +21,7 @@ export class InscriptionCoachComponent implements OnInit {
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
       nom: ['', Validators.required],
-      login: ['', Validators.required],
+      login: ['', Validators.required,this.loginFree(this.coachService)],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     },{
@@ -52,5 +54,16 @@ export class InscriptionCoachComponent implements OnInit {
       this.router.navigate(['/connexion']);
     })
 
+  }
+
+  loginFree(srv: CoachService): AsyncValidatorFn{
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      console.debug('check');
+      return this.coachService.checkLogin(control.value).pipe(
+        map((exist:boolean)=> {
+          return exist ? {loginExist: true} : null;
+        })
+      );
+    };
   }
 }

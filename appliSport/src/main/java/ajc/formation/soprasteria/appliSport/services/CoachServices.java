@@ -43,10 +43,12 @@ public class CoachServices   {
 		return coachRepository.findByNom(nom);
 	}
 
-
 	public void deleteByNom(String nom) {
 		Coach coach = getByNom(nom);
-		coachRepository.delete(coach);
+		if (coach != null) {
+			coachRepository.delete(coach);
+			compteSrv.deleteCompte(coach.getCompte().getLogin());
+		}
 	}
 
 	public void updateCoach(Coach coach) {

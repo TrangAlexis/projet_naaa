@@ -15,11 +15,12 @@ import { ProgrammeEditorComponent } from './programme-editor/programme-editor.co
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
+import { AuthGuardServiceTwo } from './services/AuthGuardServiceTwo';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'inscription', component: InscriptionComponent },
-  { path: 'connexion', component: ConnexionComponent },
+  { path: '', component: LandingPageComponent, canActivate: [AuthGuardServiceTwo]},
+  { path: 'inscription', component: InscriptionComponent, canActivate: [AuthGuardServiceTwo]},
+  { path: 'connexion', component: ConnexionComponent, canActivate: [AuthGuardServiceTwo]},
   { path: 'home-page', component: HomePageComponent, canActivate: [AuthGuardService]  },
   { path: 'programs-page', component: ProgramsPageComponent, canActivate: [AuthGuardService]   },
   { path: 'leaderboards-page', component: LeaderboardsPageComponent, canActivate: [AuthGuardService]   },
