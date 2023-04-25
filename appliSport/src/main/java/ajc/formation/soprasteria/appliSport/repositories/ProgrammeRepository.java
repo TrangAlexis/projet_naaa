@@ -27,15 +27,15 @@ public interface ProgrammeRepository extends JpaRepository<Programme, Long> {
 	@Query(value="SELECT distinct e.exercice_id FROM bdd_naaa.programme_exercice pe JOIN bdd_naaa.exercice e WHERE pe.programme_id=:programmeId", nativeQuery = true)
 	List<Long> findExercicesIdsByProgramme(@Param("programmeId") Long programmeId);
 
-    @Transactional
-    @Modifying
-    @Query("update Programme c set c.clientDansProgramme=null where c.clientDansProgramme=:client")
-    void removeClientFromProgrammeByClient(@Param("client") Client client);
+   // @Transactional
+    //@Modifying
+    //@Query("update Programme c set c.clientDansProgramme=null where c.clientDansProgramme=:client")
+    //void removeClientFromProgrammeByClient(@Param("client") Client client);
 
-    List<Programme> findByClient(Client client);
+  //  List<Programme> findByClient(Client client);
 
-    @Transactional
-    @Query("select c from Programme c left join fetch c.programme_exercice where c.id=:id")
-    Optional<Programme> findByIdFetchProgrammeExercice(@Param("id") Long id);
+    //@Transactional
+   // @Query("select c from Programme c left join fetch c.programme_exercice where c.id=:id")
+   // Optional<Programme> findByIdFetchProgrammeExercice(@Param("id") Long id);
 
 }

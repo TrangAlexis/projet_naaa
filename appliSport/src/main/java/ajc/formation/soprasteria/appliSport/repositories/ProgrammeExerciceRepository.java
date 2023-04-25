@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 
 public interface ProgrammeExerciceRepository extends JpaRepository<ProgrammeExercice, Long> {
-    @Modifying
-    @Transactional
-    @Query("delete from ProgrammeExercice a where a.id.programme:programme")
-    void deleteByProgramme(@Param("programme") Programme programme);
+    //@Modifying
+   // @Transactional
+   // @Query("delete from ProgrammeExercice a where a.id.programme:programme")
+   // void deleteByProgramme(@Param("programme") Programme programme);
 }
