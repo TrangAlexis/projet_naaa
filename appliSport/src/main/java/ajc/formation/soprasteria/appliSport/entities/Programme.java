@@ -9,12 +9,19 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 
 
 @Entity
@@ -22,24 +29,24 @@ import javax.persistence.Transient;
 public class Programme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	@Column(name="programme_id")
 	private Long id;
 	@Column(name="programme_name")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private String nom;
 	@Column(name="programme_duree")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private Integer nombreJours;
 	@OneToMany(mappedBy = "id.programme")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	private Set<ProgrammeExercice> exercices;
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
 	@Transient
 	private List<Client> clientTermineProgramme;
 	@Transient
-	private Personne coachCreateur;
+	private Coach coachCreateur;
 	
 	public Programme() {
 		

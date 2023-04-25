@@ -27,6 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import ajc.formation.soprasteria.appliSport.entities.Exercice;
 import ajc.formation.soprasteria.appliSport.entities.Programme;
 import ajc.formation.soprasteria.appliSport.services.ProgrammeServices;
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
@@ -45,19 +46,22 @@ public class ProgrammeRestController {
 	ExerciceServices exerciceServices;
 
 
+
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) {
+		programmeSrv.deleteById(id);
+	}
+
+
 	@GetMapping("")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.Programme.class)
 	public List<Programme> getAll(){
 		return programmeSrv.findAll();
 	}
 
-    /*@PostMapping("/ajouter")
-	@JsonView(JsonViews.Simple.class)
-	public Programme create() {
-		Programme programme = new Programme();
-		programmeSrv.create(programme);
-		return programme;
-	}*/
+
+
 
 	@PostMapping("/ajouter")
 	@JsonView(JsonViews.Simple.class)

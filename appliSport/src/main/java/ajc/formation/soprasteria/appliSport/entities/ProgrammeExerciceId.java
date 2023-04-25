@@ -16,9 +16,10 @@ public class ProgrammeExerciceId implements Serializable{
 	@JoinColumn(name="programme_exercice_id_programme", foreignKey = @ForeignKey(name="programme_exercice_id_programme_fk"))
 	private Programme programme;
 	@ManyToOne
-	@JsonView(JsonViews.Simple.class)
+	@JsonView({JsonViews.Programme.class})
 	@JoinColumn(name="programme_exercice_id_exercice", foreignKey = @ForeignKey(name="programme_exercice_id_exercice_fk"))
 	private Exercice exercice;
+	
 	public ProgrammeExerciceId() {
 	}
 	public ProgrammeExerciceId(Programme programme, Exercice exercice) {

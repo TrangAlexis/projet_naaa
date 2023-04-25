@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Program } from 'src/app/models/programs.model'; 
+import { Programme } from 'src/app/models/programmes.model'; 
 
 @Component({
 selector: 'app-programs',
@@ -7,7 +7,7 @@ templateUrl: './programs.component.html',
 styleUrls: ['./programs.component.scss']
 })
 export class ProgramsComponent implements OnInit {
-  @Input() programs!: Program;
+  @Input() programs!: Programme;
 
   title!: string;
   next!: string;

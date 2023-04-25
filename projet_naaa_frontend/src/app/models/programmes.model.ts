@@ -1,4 +1,6 @@
-export class Program {
+export class Programme {
+  
+  public id?: number;
     constructor(
       public title: string,
       public points: number,

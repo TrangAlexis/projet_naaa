@@ -14,6 +14,7 @@ import ajc.formation.soprasteria.appliSport.repositories.ExerciceRepository;
 @Service
 @Transactional
 public class ExerciceServices {
+	
 
 	@Autowired
 	private ExerciceRepository exerciceRepository;
@@ -45,4 +46,6 @@ public class ExerciceServices {
 			throw new ExerciceException("Exercice introuvable avec l'id: " + exercice.getId());
 		}
 	}
+	
+
 }

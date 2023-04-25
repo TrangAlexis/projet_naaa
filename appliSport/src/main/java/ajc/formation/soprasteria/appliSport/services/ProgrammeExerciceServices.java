@@ -17,5 +17,6 @@ public class ProgrammeExerciceServices {
     public List<ProgrammeExercice> findAll() {
         return programmeExerciceRepository.findAll();
     }
+    
 
 }

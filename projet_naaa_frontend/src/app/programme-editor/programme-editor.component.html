@@ -1,0 +1,74 @@
+<div class="mt-8 w-full md:w-[700px] rounded-xl ml-auto mr-auto">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 rounded-xl">
+      <h2 class="text-center text-2xl font-extrabold text-gray-700 pb-2">
+        Créer un Programme
+      </h2>
+      <form class="space-y-6" (ngSubmit)="onSubmitProgramme()" [formGroup]="form">
+        <div class="form-group">
+          <label for="programmeName" class="block text-sm font-medium text-gray-700">
+            Nom du Programme
+          </label>
+          <div class="mt-1">
+            <input
+              id="programmeName"
+              name="programmeName"
+              type="text"
+              autocomplete="off"
+              required
+              [(ngModel)]="programme.title"
+              class="form-control appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              formControlName="prenom"
+              />
+          </div>
+        </div>
+<!-- list -->
+        <ul class="mx-14">
+          <li *ngFor="let exercice of programExercices" class="flex my-3 items-center justify-between">
+            <div>
+              <p class="font-bold">{{ exercice.nom }}</p>
+              <p>{{ exercice.description }}</p>
+            </div>
+          </li>
+        </ul>
+
+<!-- select -->
+        <div>
+          <select name="selectorExercice" class="form-control" id="selectorExercice" ormControlName="selectorExercice">
+            <option *ngFor="let exercice of allExercices" [ngValue]="exercice">{{exercice.nom}}</option>
+          </select>
+                <label for="nombre"></label>
+                <input id="nombre"
+                class="appearance-none px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+                <select name="selectorTypeExos" id="selectorTypeExos">
+                  <option value="reps">Répétitions</option>
+                  <option value="secs">Secondes</option>
+                </select>
+          </div>
+        <button
+        (click) = "addExercice()"
+        type="submit"
+        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        Ajouter un exercice
+      </button>
+        
+
+        <div class="flex flex-col gap-4">
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Créer le Programme
+          </button>
+          <a
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            routerLink="/programs-page"
+          >
+            Annuler
+          </a>
+        </div>
+      </form>
+    </div>
+    
+  </div>

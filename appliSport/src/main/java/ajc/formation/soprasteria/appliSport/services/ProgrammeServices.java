@@ -3,20 +3,22 @@ package ajc.formation.soprasteria.appliSport.services;
 import java.util.List;
 import java.util.Set;
 
-import ajc.formation.soprasteria.appliSport.entities.ProgrammeExercice;
-import ajc.formation.soprasteria.appliSport.repositories.ProgrammeExerciceRepository;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.appliSport.entities.Programme;
 import ajc.formation.soprasteria.appliSport.exceptions.ProgrammeException;
+import ajc.formation.soprasteria.appliSport.repositories.ProgrammeExerciceRepository;
 import ajc.formation.soprasteria.appliSport.repositories.ProgrammeRepository;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-
 @Service
-public class ProgrammeServices {
+public class ProgrammeServices implements CommandLineRunner {
 
 	@Autowired
 	private ProgrammeRepository programmeRepo;
@@ -35,6 +37,14 @@ public class ProgrammeServices {
 			throw new ProgrammeException("La base de données de programme est vide");
 		}
 		return listProgramme;
+	}
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProgrammeServices.class);
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		System.out.println("-------Server started--------");
 	}
 
 	public Programme create(Programme programme) {
@@ -69,11 +79,13 @@ public class ProgrammeServices {
 	}
 
 	public void delete(Programme programme) {
-		deleteById(programme.getId());
+		programmeExerciceRepository.deleteByProgramme(programme);
+		programmeRepo.delete(programme);
 	}
 
 	public void deleteById(Long id) {
-		Programme checkProgramme = this.findById(id);
+		this.findById(id);
+		programmeExerciceRepository.deleteByProgramme(this.findById(id));
 		programmeRepo.delete(findById(id));
 	}
 

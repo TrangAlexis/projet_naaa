@@ -3,6 +3,10 @@ package ajc.formation.soprasteria.appliSport.services;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,10 +14,6 @@ import org.springframework.stereotype.Service;
 import ajc.formation.soprasteria.appliSport.entities.Client;
 import ajc.formation.soprasteria.appliSport.exceptions.ClientException;
 import ajc.formation.soprasteria.appliSport.repositories.ClientRepository;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 
 @Service
 public class ClientServices {

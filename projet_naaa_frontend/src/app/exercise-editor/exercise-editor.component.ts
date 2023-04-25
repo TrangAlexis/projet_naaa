@@ -30,7 +30,8 @@ export class ExerciseEditorComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+
+  onSubmitExercice() {
     this.exerciceService.create(this.exercice).subscribe((result) => {
       alert("L'exercice a été ajouté à la base de donnée avec succès!");
       window.location.reload();

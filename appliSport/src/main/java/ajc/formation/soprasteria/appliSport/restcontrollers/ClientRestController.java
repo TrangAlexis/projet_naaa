@@ -107,9 +107,4 @@ public class ClientRestController {
 		clientSrv.deleteByNom(nom);
 	}
 
-
-
-
-
-
 }

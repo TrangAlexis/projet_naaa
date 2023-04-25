@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Program } from '../models/programs.model';
+import { Programme } from '../models/programmes.model';
 import { AuthService } from '../services/AuthService';
 
 @Component({
@@ -18,12 +18,12 @@ export class ProgramsPageComponent implements OnInit {
     let sortedPrograms = this.programs.sort((a, b) => b.finishedChallengers - a.finishedChallengers);
   }
 
-  getFavoritePrograms(programs: Program[]): Program[] {
+  getFavoritePrograms(programs: Programme[]): Programme[] {
     return programs.filter(program => program.isFavorite).concat(programs.filter(program => !program.isFavorite));
   }
 
-  programs: Program[] = [
-    new Program(
+  programs: Programme[] = [
+    new Programme(
       'Programme de jogging',
       600,
       'La coureuse du dimanche',
@@ -32,7 +32,7 @@ export class ProgramsPageComponent implements OnInit {
       4039,
       false
     ),
-    new Program(
+    new Programme(
       'Yoga des chiens',
       700,
       'Snoop Dog',
@@ -41,7 +41,7 @@ export class ProgramsPageComponent implements OnInit {
       2015,
       true
     ),
-    new Program(
+    new Programme(
       'Musculation en Pyjama',
       600,
       'Pyjaman',
@@ -50,7 +50,7 @@ export class ProgramsPageComponent implements OnInit {
       3152,
       false
     ),
-    new Program(
+    new Programme(
       'Classique Push Pull Leg',
       400,
       'Le Gym Bro',
@@ -59,7 +59,7 @@ export class ProgramsPageComponent implements OnInit {
       2128,
       false
     ),
-    new Program(
+    new Programme(
       'Avec ma gosse',
       500,
       'Super parent',
@@ -68,7 +68,7 @@ export class ProgramsPageComponent implements OnInit {
       2876,
       true
     ),
-    new Program(
+    new Programme(
       'Programme de yoga',
       1000,
       'Shi Fu',

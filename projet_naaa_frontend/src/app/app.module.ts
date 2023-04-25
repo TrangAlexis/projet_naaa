@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { InscriptionCoachComponent } from './inscription-coach/inscription-coach.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptors';
+import { ProgrammeEditorComponent } from './programme-editor/programme-editor.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
@@ -47,6 +48,7 @@ import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
     SearchBarComponent,
     ExerciseEditorComponent,
     InscriptionCoachComponent,
+    ProgrammeEditorComponent,
     SubscribeComponent,
     PaymentComponent,
     ProfilEditorComponent,
