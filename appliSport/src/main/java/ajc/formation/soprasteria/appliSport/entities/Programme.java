@@ -55,6 +55,11 @@ public class Programme {
 		this.clientTermineProgramme = clientTermineProgramme;
 	}
 
+	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices) {
+		this.nom = nom;
+		this.nombreJours = nombreJours;
+		this.exercices = exercices;
+	}
 
 	public Integer getNombreJours() {
 		return nombreJours;

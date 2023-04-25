@@ -22,7 +22,10 @@ public class ProgrammeExercice {
 		
 	}
 
+
+
 	public ProgrammeExercice(ProgrammeExerciceId id, Integer repetition) {
+		super();
 		this.id = id;
 		this.repetition = repetition;
 	}

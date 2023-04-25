@@ -34,7 +34,7 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @RestController
 @RequestMapping("/api/programme")
 public class ProgrammeRestController {
-	
+
 	@Autowired
 	private ProgrammeServices programmeSrv;
 
@@ -45,19 +45,29 @@ public class ProgrammeRestController {
 	ExerciceServices exerciceServices;
 
 
-	
 	@GetMapping("")
 	@JsonView(JsonViews.Simple.class)
 	public List<Programme> getAll(){
 		return programmeSrv.findAll();
 	}
 
-	@PostMapping("")
+    /*@PostMapping("/ajouter")
 	@JsonView(JsonViews.Simple.class)
-	public Programme create(@RequestBody List<ProgrammeExercice> exercices) {
+	public Programme create() {
 		Programme programme = new Programme();
+		programmeSrv.create(programme);
+		return programme;
+	}*/
+
+	@PostMapping("/ajouter")
+	@JsonView(JsonViews.Simple.class)
+	public Programme create(@Valid @RequestBody Programme programme, BindingResult result) {
+		if (result.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Programme data", (Throwable) result.getAllErrors());
+		}
+
 		Set<ProgrammeExercice> programmeExercices = new HashSet<>();
-		for (ProgrammeExercice programmeExercice : exercices) {
+		for (ProgrammeExercice programmeExercice : programme.getExercices()) {
 			Exercice exercice = exerciceServices.findById(programmeExercice.getId().getExercice().getId());
 			ProgrammeExercice newProgrammeExercice = new ProgrammeExercice();
 			newProgrammeExercice.setId(new ProgrammeExerciceId(programme, exercice));
@@ -65,9 +75,11 @@ public class ProgrammeRestController {
 			programmeExercices.add(newProgrammeExercice);
 		}
 		programme.setExercices(programmeExercices);
+
 		programmeSrv.create(programme);
 		return programme;
 	}
+
 
 
 
