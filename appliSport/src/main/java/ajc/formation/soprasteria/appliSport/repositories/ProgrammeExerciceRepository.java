@@ -1,5 +1,7 @@
 package ajc.formation.soprasteria.appliSport.repositories;
 
-public interface ProgrammeExerciceRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProgrammeExerciceRepository{
 
 }

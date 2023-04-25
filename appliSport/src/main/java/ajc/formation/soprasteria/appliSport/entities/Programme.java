@@ -6,9 +6,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -32,21 +35,27 @@ public class Programme {
 	@Column(name="programme_duree")
 	@JsonView(JsonViews.Programme.class)
 	private Integer nombreJours;
+	
+	
+	
+//	@Transient
+	@ManyToMany(mappedBy="programmes")
+//	@JoinColumn(name="prog_id_client", foreignKey = @ForeignKey(name="prog_id_client_fk"))
+//	@JsonView(JsonViews.Programme.class)
+	private Set<Exercice> exercices;
 	@Transient
-	@OneToMany(mappedBy = "programme")
-	private Set<ProgrammeExercice> exercices;
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
 	@Transient
 	private List<Client> clientTermineProgramme;
 	@Transient
-	private Personne coachCreateur;
+	private Coach coachCreateur;
 	
 	public Programme() {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, Set<Exercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -82,11 +91,11 @@ public class Programme {
 		this.nom = nom;
 	}
 
-	public Set<ProgrammeExercice> getExercices() {
+	public Set<Exercice> getExercices() {
 		return exercices;
 	}
 
-	public void setExercices(Set<ProgrammeExercice> exercices) {
+	public void setExercices(Set<Exercice> exercices) {
 		this.exercices = exercices;
 	}
 

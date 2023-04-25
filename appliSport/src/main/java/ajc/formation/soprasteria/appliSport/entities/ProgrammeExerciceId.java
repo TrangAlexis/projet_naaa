@@ -3,9 +3,27 @@ package ajc.formation.soprasteria.appliSport.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+
+@Embeddable
 public class ProgrammeExerciceId implements Serializable{
+	@OneToOne
+	@JoinColumn(name = "programme_id", foreignKey = @ForeignKey(name = "programme_id_fk"), insertable = false, updatable = false)
 	private Programme programme;
+	@ManyToOne
+	@JoinColumn(name = "exercice_id", foreignKey = @ForeignKey(name = "exercice_id_fk"), insertable = false, updatable = false)
+	@JsonView(JsonViews.Programme.class)
 	private Exercice exercice;
+	
 	public ProgrammeExerciceId() {
 	}
 	public ProgrammeExerciceId(Programme programme, Exercice exercice) {

@@ -3,6 +3,7 @@ package ajc.formation.soprasteria.appliSport.entities;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
@@ -11,40 +12,47 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+
 
 @Entity
 @Table(name="programme_exercice")
-@IdClass(ProgrammeExerciceId.class)
 public class ProgrammeExercice {
-	@Id
-	@ManyToOne
-	@JoinColumn(name="programme_exercice_id_programme", foreignKey = @ForeignKey(name="programme_exercice_id_programme_fk"))
-	private Programme programme;
+	@EmbeddedId
+	@JsonView(JsonViews.Programme.class)
+	private ProgrammeExerciceId id;
 	@Column(name="programme_exercice_repetition")
+	@JsonView(JsonViews.Programme.class)
 	private Integer repetition;
-	@Id
-	@ManyToOne
-	@JoinColumn(name="programme_exercice_id_exercice", foreignKey = @ForeignKey(name="programme_exercice_id_exercice_fk"))
-	private Exercice exercice;
 	
 	public ProgrammeExercice() {
 		
 	}
 
-	public ProgrammeExercice(Programme programme, Integer repetition, Exercice exercice) {
+	public ProgrammeExercice(ProgrammeExerciceId id, Integer repetition) {
 		super();
-		this.programme = programme;
+		this.id = id;
 		this.repetition = repetition;
-		this.exercice = exercice;
 	}
 
-	public Programme getProgramme() {
-		return programme;
+
+
+	public ProgrammeExerciceId getId() {
+		return id;
 	}
 
-	public void setProgramme(Programme programme) {
-		this.programme = programme;
+	public void setId(ProgrammeExerciceId id) {
+		this.id = id;
 	}
+
+	public ProgrammeExercice(Integer repetition) {
+		super();
+		this.repetition = repetition;
+	}
+
+
 
 	public Integer getRepetition() {
 		return repetition;
@@ -54,23 +62,9 @@ public class ProgrammeExercice {
 		this.repetition = repetition;
 	}
 
-	public Exercice getExercice() {
-		return exercice;
-	}
-
-	public void setExercice(Exercice exercice) {
-		this.exercice = exercice;
-	}
-
-	@Override
-	public String toString() {
-		return "ProgrammeExercice [programme=" + programme + ", repetition=" + repetition + ", exercice="
-				+ exercice + "]";
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(exercice, programme, repetition);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -82,10 +76,11 @@ public class ProgrammeExercice {
 		if (getClass() != obj.getClass())
 			return false;
 		ProgrammeExercice other = (ProgrammeExercice) obj;
-		return Objects.equals(exercice, other.exercice) && Objects.equals(programme, other.programme)
-				&& Objects.equals(repetition, other.repetition);
+		return Objects.equals(id, other.id);
 	}
-	
+
+
+
 	
 	
 }

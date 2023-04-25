@@ -1,14 +1,19 @@
 package ajc.formation.soprasteria.appliSport.entities;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -20,15 +25,21 @@ public class Exercice {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "exercice_id")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView({JsonViews.Simple.class,JsonViews.Programme.class})
 	private Long id;
 	@Column(name= "exercice_name")
+	@NotBlank
 	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	@Column(name= "description", columnDefinition = "TEXT")
 	@Lob // Big stockage de donnée (ici text) dans uen colonne de bdd
 	@JsonView(JsonViews.Simple.class)
 	private String description;
+	
+	
+//	@Transient
+	@ManyToMany
+	private Set<Programme> programmes;
 	
 	public Exercice() {
 		

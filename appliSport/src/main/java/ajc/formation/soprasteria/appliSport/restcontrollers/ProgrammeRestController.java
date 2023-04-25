@@ -1,6 +1,7 @@
 package ajc.formation.soprasteria.appliSport.restcontrollers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import ajc.formation.soprasteria.appliSport.entities.Exercice;
 import ajc.formation.soprasteria.appliSport.entities.Programme;
 import ajc.formation.soprasteria.appliSport.services.ProgrammeServices;
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
@@ -42,6 +44,14 @@ public class ProgrammeRestController {
 		Programme programme = null;
 		programme = programmeSrv.findById(id);
 		return programme;
+	}
+	
+	@GetMapping("/exos/{id}")
+	@JsonView(JsonViews.Simple.class)
+	public List<Exercice> getExosIdsById(@PathVariable Long id){
+		List<Exercice> exercices = null;
+		exercices = programmeSrv.findExercicesById(id);
+		return exercices;
 	}
 	
 	
