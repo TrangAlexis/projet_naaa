@@ -14,15 +14,15 @@ import java.util.Optional;
 
 public interface ProgrammeRepository extends JpaRepository<Programme, Long> {
 
-    @Transactional
-    @Modifying
-    @Query("update Programme c set c.clientDansProgramme=null where c.clientDansProgramme=:client")
-    void removeClientFromProgrammeByClient(@Param("client") Client client);
+   // @Transactional
+    //@Modifying
+    //@Query("update Programme c set c.clientDansProgramme=null where c.clientDansProgramme=:client")
+    //void removeClientFromProgrammeByClient(@Param("client") Client client);
 
-    List<Programme> findByClient(Client client);
+  //  List<Programme> findByClient(Client client);
 
-    @Transactional
-    @Query("select c from Programme c left join fetch c.programme_exercice where c.id=:id")
-    Optional<Programme> findByIdFetchProgrammeExercice(@Param("id") Long id);
+    //@Transactional
+   // @Query("select c from Programme c left join fetch c.programme_exercice where c.id=:id")
+   // Optional<Programme> findByIdFetchProgrammeExercice(@Param("id") Long id);
 
 }

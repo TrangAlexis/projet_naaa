@@ -54,7 +54,21 @@ public class ProgrammeRestController {
 
 	@PostMapping("")
 	@JsonView(JsonViews.Simple.class)
-	public Programme create(@RequestBody List<ProgrammeExercice> exercices) {return null;}
+	public Programme create(@RequestBody List<ProgrammeExercice> exercices) {
+		Programme programme = new Programme();
+		Set<ProgrammeExercice> programmeExercices = new HashSet<>();
+		for (ProgrammeExercice programmeExercice : exercices) {
+			Exercice exercice = exerciceServices.findById(programmeExercice.getId().getExercice().getId());
+			ProgrammeExercice newProgrammeExercice = new ProgrammeExercice();
+			newProgrammeExercice.setId(new ProgrammeExerciceId(programme, exercice));
+			newProgrammeExercice.setRepetition(programmeExercice.getRepetition());
+			programmeExercices.add(newProgrammeExercice);
+		}
+		programme.setExercices(programmeExercices);
+		programmeSrv.create(programme);
+		return programme;
+	}
+
 
 
 
