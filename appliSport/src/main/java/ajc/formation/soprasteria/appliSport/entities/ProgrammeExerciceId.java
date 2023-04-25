@@ -1,10 +1,23 @@
 package ajc.formation.soprasteria.appliSport.entities;
 
+import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import javax.persistence.Embeddable;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
-
+@Embeddable
 public class ProgrammeExerciceId implements Serializable{
+
+	@ManyToOne
+	@JoinColumn(name="programme_exercice_id_programme", foreignKey = @ForeignKey(name="programme_exercice_id_programme_fk"))
 	private Programme programme;
+	@ManyToOne
+	@JsonView(JsonViews.Simple.class)
+	@JoinColumn(name="programme_exercice_id_exercice", foreignKey = @ForeignKey(name="programme_exercice_id_exercice_fk"))
 	private Exercice exercice;
 	public ProgrammeExerciceId() {
 	}

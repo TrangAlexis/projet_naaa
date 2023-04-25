@@ -1,11 +1,19 @@
 package ajc.formation.soprasteria.appliSport.restcontrollers;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
+import ajc.formation.soprasteria.appliSport.entities.Exercice;
+import ajc.formation.soprasteria.appliSport.entities.ProgrammeExercice;
+import ajc.formation.soprasteria.appliSport.entities.ProgrammeExerciceId;
+import ajc.formation.soprasteria.appliSport.services.ExerciceServices;
+import ajc.formation.soprasteria.appliSport.services.ProgrammeExerciceServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,29 +37,26 @@ public class ProgrammeRestController {
 	
 	@Autowired
 	private ProgrammeServices programmeSrv;
+
+	@Autowired
+	private ProgrammeExerciceServices programmeExerciceServices;
+
+	@Autowired
+	ExerciceServices exerciceServices;
+
+
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Simple.class)
 	public List<Programme> getAll(){
 		return programmeSrv.findAll();
 	}
-	
-	
+
 	@PostMapping("")
-	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Simple.class)
-	public Programme create(@Valid @RequestBody Programme programme, BindingResult br) {
-		if(br.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-		}
-		programmeSrv.save(programme);
-		return programmeSrv.findById(programme.getId());
-	}
-	
-	
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
-		programmeSrv.deleteById(id);
-	}
+	public Programme create(@RequestBody List<ProgrammeExercice> exercices) {return null;}
+
+
+
+
 }
