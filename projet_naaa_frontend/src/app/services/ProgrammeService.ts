@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Programme } from '../models/programmes.model';
+import { Program } from '../models/programmes';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +11,16 @@ export class ProgrammeService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Programme[]> {
-    return this.http.get<Programme[]>(this.apiUrl);
+  getAll(): Observable<Program[]> {
+    return this.http.get<Program[]>(this.apiUrl);
   }
-  getById(id: string): Observable<Programme> {
+  getById(id: string): Observable<Program> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Programme>(url);
+    return this.http.get<Program>(url);
   }
 
-  create(programme: Programme): Observable<Programme> {
-    return this.http.post<Programme>(`this.apiUrl/ajouter`, programme);
+  create(programme: Program): Observable<Program> {
+    return this.http.post<Program>(`this.apiUrl/ajouter`, programme);
   }
 
 //   updateProgram(program: Program): Observable<void> {

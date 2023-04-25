@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Programme } from '../models/programmes.model';
+import { Program } from '../models/programmes';
 import { Exercice } from '../models/exercise.model';
 import { ExerciceService } from '../services/ExerciceService';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { ProgrammeService } from '../services/ProgrammeService';
+import { Programme } from '../models/programmes.model';
 
 @Component({
   selector: 'app-programme-editor',
@@ -13,23 +14,21 @@ import { ProgrammeService } from '../services/ProgrammeService';
 })
 export class ProgrammeEditorComponent implements OnInit{
   form!: FormGroup;
-  programme: Programme = {
-    title: "",
-    points:-1,
-    rewardTitle:"",
-    imageSrc:"",
-    participants:0,
-    finishedChallengers:0,
-    isFavorite: false
+  programme: Program = {
+    nom: "",
+    nombreJours: 0,
+    exercices: [],
   };
   programExercices!: Exercice[];
   allExercices!: Exercice[];
+  allProgrammes!: Program[];
 
   constructor(private exerciceService: ExerciceService,
               private programService: ProgrammeService,
               private router: Router) {}
 
   ngOnInit(): void {
+    console.log("hello")
     this.exerciceService.getAll().subscribe(
       (exercices: Exercice[]) => {
         this.allExercices = exercices;
@@ -38,13 +37,17 @@ export class ProgrammeEditorComponent implements OnInit{
         console.log(error);
       }
     );
+    this.programService.getAll().subscribe(
+      (programmes: Program[]) =>{
+        this.allProgrammes = programmes;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    console.log(this.allProgrammes)
   }
   addExercice(){
-    let exerciceJson = {
-      nom: this.form.get('selectorExercice.nom')?.value,
-      description:this.form.get('selectorExercice.description')?.value,
-    };
-    this.programService.create(this.programme)
   }
 
   onSubmitProgramme() {
