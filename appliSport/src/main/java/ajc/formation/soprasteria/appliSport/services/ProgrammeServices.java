@@ -46,6 +46,7 @@ public class ProgrammeServices implements CommandLineRunner{
 		});
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<Exercice> findExercicesById(Long id) {
 		List<Exercice> exercices= new ArrayList<>();
 		if (id == null) {
