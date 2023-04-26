@@ -37,6 +37,9 @@ public class ClientServices {
 		if (client.getCompte().getPassword() == null || client.getCompte().getPassword().isBlank()) {
 			throw new ClientException("mdp obligatoire");
 		}
+		if (client.getAvatar() == null || client.getAvatar().isBlank()) {
+			throw new ClientException("avatar obligatoire");
+		}
 		clientRepository.save(client);
 	}
 
@@ -45,6 +48,8 @@ public class ClientServices {
 		client.getCompte().setPassword(passwordEncoder.encode(newPassword));
 		clientRepository.save(client);
 	}
+	
+	
 
 	public void updateClientRole(Client client) {
 

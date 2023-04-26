@@ -91,6 +91,9 @@ public class ClientRestController {
 		if (client.getPointsDeSucces() != null) {
 			clientEnBase.setPointsDeSucces(client.getPointsDeSucces());
 		}
+		if (client.getAvatar() != null) {
+			clientEnBase.setAvatar(client.getAvatar());
+		}
 		if (client.getProgramme() != null) {
 			clientEnBase.setProgramme(client.getProgramme());
 		}
