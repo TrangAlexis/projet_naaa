@@ -24,6 +24,8 @@ public abstract class Personne {
 	// @Column(name = "personne_pointsDeSucces")
 	@JsonView(JsonViews.Simple.class)
 	private Integer pointsDeSucces;
+	@JsonView(JsonViews.Simple.class)
+	private String avatar;
 
 
 	public Personne() {
@@ -34,7 +36,23 @@ public abstract class Personne {
 		this.nom = nom;
 		this.pointsDeSucces = pointsDeSucces;
 	}
+	
+	
 
+
+	public Personne(String nom, Integer pointsDeSucces, String avatar) {
+		this.nom = nom;
+		this.pointsDeSucces = pointsDeSucces;
+		this.avatar = avatar;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
 	public String getNom() {
 		return nom;

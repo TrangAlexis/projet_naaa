@@ -6,6 +6,7 @@ import ajc.formation.soprasteria.appliSport.services.CoachServices;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,7 +18,11 @@ import java.util.List;
 @RequestMapping("/api/coach")
 public class CoachRestController {
     @Autowired
-    CoachServices coachServices;
+    private CoachServices coachServices;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
 
     @GetMapping("")
     @JsonView(JsonViews.Coach.class)
@@ -64,14 +69,17 @@ public class CoachRestController {
         if (coach.getCompte().getLogin() != null) {
             coachEnBase.getCompte().setLogin(coach.getCompte().getLogin());
         }
-        if (coach.getCompte().getPassword() != null) {
-            coachEnBase.getCompte().setPassword(coach.getCompte().getPassword());
+        if (coach.getCompte().getPassword() != null && !coach.getCompte().getPassword().isBlank()) {
+            coachEnBase.getCompte().setPassword(passwordEncoder.encode(coach.getCompte().getPassword()));
         }
         if (coach.getCompte().getRole() != null) {
             coachEnBase.getCompte().setRole(coach.getCompte().getRole());
         }
         if (coach.getPointsDeSucces() != null) {
             coachEnBase.setPointsDeSucces(coach.getPointsDeSucces());
+        }
+        if (coach.getAvatar() != null) {
+            coachEnBase.setAvatar(coach.getAvatar());
         }
         if (coach.getProgramme() != null) {
             coachEnBase.setProgramme(coach.getProgramme());

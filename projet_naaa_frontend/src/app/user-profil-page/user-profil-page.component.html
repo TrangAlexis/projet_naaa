@@ -4,7 +4,7 @@
 >
   <div class="w-20 h-20 rounded-full overflow-hidden bg-gray-300">
     <img
-      src="/assets/images/profilepic.jpg"
+      src={{client.avatar}}
       alt="Photo de profil"
       class="w-full h-full object-cover"
     />
@@ -13,7 +13,7 @@
     <h3 class="text-lg font-bold tracking-widest capitalize">
       {{ client.nom }}
     </h3>
-    <p class="text-md">Niveau 82 - La Conquérante</p>
+    <p class="text-md">{{passerDesLevels()}}</p>
     <p class="text-sm">Membre {{ user.role }}</p>
   </div>
 </div>

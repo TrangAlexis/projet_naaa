@@ -26,7 +26,8 @@ import javax.persistence.Transient;
 @Table(name = "coach")
 @AttributeOverrides({
 	@AttributeOverride(name = "nom", column = @Column(name = "coach_nom", nullable = false)),
-	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces"))
+	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "coach_pointsDeSucces")),
+	@AttributeOverride(name = "avatar", column = @Column(name = "coach_avatar"))
 })
 public class Coach extends Personne {
 
@@ -54,6 +55,13 @@ public class Coach extends Personne {
 		super(nom, pointsDeSucces);
 		this.programme = programme;
 		this.exercices = exercices;
+	}
+	
+	public Coach(String nom, Integer pointsDeSucces, String avatar, Set<Programme> programme, Set<Exercice> exercices, Compte compte) {
+		super(nom, pointsDeSucces, avatar);
+		this.programme = programme;
+		this.exercices = exercices;
+		this.compte = compte;
 	}
 
 	public Coach(String nom, Integer pointsDeSucces) {

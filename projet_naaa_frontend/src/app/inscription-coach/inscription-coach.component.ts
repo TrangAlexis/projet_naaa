@@ -21,6 +21,7 @@ export class InscriptionCoachComponent implements OnInit {
   ngOnInit() {
     this.inscriptionForm = this.formBuilder.group({
       nom: ['', Validators.required],
+      avatar: ['', Validators.required],
       login: ['', Validators.required,this.loginFree(this.coachService)],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
@@ -30,6 +31,7 @@ export class InscriptionCoachComponent implements OnInit {
     this.inscriptionForm.controls['login'].valueChanges.subscribe(value => {
       this.inscriptionForm.controls['nom'].setValue(value);
     });
+    this.inscriptionForm.controls['avatar'].setValue('/assets/images/cuisine.jpg');
   }
 
   get f() { return this.inscriptionForm.controls; }
@@ -43,6 +45,7 @@ export class InscriptionCoachComponent implements OnInit {
 
     const coach: Coach = {
       nom: this.f['nom'].value,
+      avatar:this.f['avatar'].value,
       compte: {
         login: this.f['login'].value,
         password: this.f['password'].value,

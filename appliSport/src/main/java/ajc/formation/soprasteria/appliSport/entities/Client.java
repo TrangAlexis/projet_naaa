@@ -12,7 +12,8 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @Table(name = "client")
 @AttributeOverrides({
 	@AttributeOverride(name = "nom", column = @Column(name = "client_nom", nullable = false)),
-	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces"))
+	@AttributeOverride(name = "pointsDeSucces", column = @Column(name = "client_pointsDeSucces")),
+	@AttributeOverride(name = "avatar", column = @Column(name = "client_avatar"))
 })
 
 public class Client extends Personne{
@@ -41,6 +42,12 @@ public class Client extends Personne{
 		this.programme = programme;
 	}
 
+	public Client(String nom, Integer pointsDeSucces,String avatar, Programme programme, Compte compte) {
+		super(nom, pointsDeSucces, avatar);
+		this.programme = programme;
+		this.compte = compte;
+	}
+	
 	public Compte getCompte() {
 		return compte;
 	}
