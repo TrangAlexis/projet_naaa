@@ -72,7 +72,7 @@ public class CoachServices   {
 	}
 	
 	public void updateCoachPassword(String nom, String newPassword) {
-		Coach coach = findByNom(nom);
+		Coach coach = getByNom(nom);
 		coach.getCompte().setPassword(passwordEncoder.encode(newPassword));
 		coachRepository.save(coach);
 	}
