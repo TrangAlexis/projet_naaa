@@ -42,6 +42,11 @@ public class CoachServices   {
 		}
 		return coachRepository.findByNom(nom);
 	}
+	
+	
+	public Coach findByNom(String nom) {
+		return coachRepository.findByNom(nom);
+	}
 
 
 	public void deleteByNom(String nom) {
@@ -59,7 +64,16 @@ public class CoachServices   {
 		if (coach.getCompte().getPassword() == null || coach.getCompte().getPassword().isBlank()) {
 			throw new CoachException("mdp obligatoire");
 		}
-		coach.getCompte().setPassword(passwordEncoder.encode(coach.getCompte().getPassword()));
+		if (coach.getAvatar() == null || coach.getAvatar().isBlank()) {
+			throw new ClientException("avatar obligatoire");
+		}
+		//coach.getCompte().setPassword(passwordEncoder.encode(coach.getCompte().getPassword()));
+		coachRepository.save(coach);
+	}
+	
+	public void updateCoachPassword(String nom, String newPassword) {
+		Coach coach = findByNom(nom);
+		coach.getCompte().setPassword(passwordEncoder.encode(newPassword));
 		coachRepository.save(coach);
 	}
 

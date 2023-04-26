@@ -14,7 +14,9 @@ export class UserProfilPageComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
-  points: number =93;
+
+
+  points: number =20;
   level!:string;
 
   constructor(private authService: AuthService, private router: Router,

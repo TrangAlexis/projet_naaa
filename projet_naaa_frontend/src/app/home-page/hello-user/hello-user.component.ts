@@ -14,7 +14,7 @@ export class HelloUserComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
-  points: number =93;
+  points: number =20;
   level!:string;
 
 

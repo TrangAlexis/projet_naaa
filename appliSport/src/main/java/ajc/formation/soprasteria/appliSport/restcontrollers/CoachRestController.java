@@ -73,6 +73,9 @@ public class CoachRestController {
         if (coach.getPointsDeSucces() != null) {
             coachEnBase.setPointsDeSucces(coach.getPointsDeSucces());
         }
+        if (coach.getAvatar() != null) {
+            coachEnBase.setAvatar(coach.getAvatar());
+        }
         if (coach.getProgramme() != null) {
             coachEnBase.setProgramme(coach.getProgramme());
         }

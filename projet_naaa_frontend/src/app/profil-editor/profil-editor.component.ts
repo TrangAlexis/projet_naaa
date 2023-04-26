@@ -18,8 +18,20 @@ export class ProfilEditorComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
+  selectedImage: any= undefined;
+
   mdpForm!: FormGroup;
   submitted = false;
+
+  avatarForm!: FormGroup;
+  submittedAvatar=false;
+
+  // avatar1 = 'assets/images/user2.jpg';
+  // avatar2 = 'assets/images/user3.jpg';
+  // avatar3 = 'assets/images/user4.jpg';
+
+  // avatars = [this.avatar1, this.avatar2, this.avatar3];
+  // selectedAvatar!: string;
 
   constructor(
     private authService: AuthService,
@@ -56,10 +68,21 @@ export class ProfilEditorComponent implements OnInit {
         validator: MustMatch('newPassword', 'confirmPassword'),
       }
     );
+    this.avatarForm = this.formBuilder.group(
+      {
+        newAvatar: ['', Validators.required]
+      }
+    );
+
+
   }
 
   get f() {
     return this.mdpForm.controls;
+  }
+
+  get av() {
+    return this.avatarForm.controls;
   }
 
   onMdpChange() {
@@ -152,4 +175,54 @@ export class ProfilEditorComponent implements OnInit {
       this.router.navigate(['']);
     }
   }
+
+
+  images = [
+    { src: 'assets/images/user2.jpg', alt: 'Image 1' },
+    { src: 'assets/images/user3.jpg', alt: 'Image 2' },
+    { src: 'assets/images/user4.jpg', alt: 'Image 3' }
+  ];
+
+
+  selectImage(image: any) {
+    this.selectedImage = image;
+    this.avatarForm.controls['newAvatar'].setValue(this.selectedImage.src);
+  }
+
+
+
+  onAvatarChange() {
+    this.submittedAvatar = true;
+
+    if (this.avatarForm.invalid) {
+      return;
+    }
+
+    const newAvatar = this.av['newAvatar'].value;
+
+    if (this.role === 'ROLE_COACH') {
+      this.coachService.getCoachByNom(this.login).subscribe((coach: any) => {
+        coach.avatar = newAvatar;
+        this.coachService.updateCoach(coach.nom, coach).subscribe((result) => {
+          alert('Avatar changé avec succès! Veuillez vous reconnecter.');
+          this.authService.logout();
+          this.router.navigate(['/connexion']);
+        });
+      });
+    } else {
+      this.clientService
+        .getClientByNom(this.login)
+        .subscribe((client: Client) => {
+          client.avatar = newAvatar;
+          this.clientService
+            .updateClient(client.nom, client)
+            .subscribe((result) => {
+              alert('Avatar changé avec succès! Veuillez vous reconnecter.');
+              this.authService.logout();
+              this.router.navigate(['/connexion']);
+            });
+        });
+    }
+  }
+
 }
