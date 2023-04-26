@@ -1,4 +1,3 @@
-import { Exercice } from "./exerciceClass.model";
 
 
 export interface Program {

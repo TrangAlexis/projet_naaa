@@ -3,9 +3,8 @@ import { Program } from '../models/programmes';
 import { Exercice } from '../models/exercise.model';
 import { ExerciceService } from '../services/ExerciceService';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ProgrammeService } from '../services/ProgrammeService';
-import { Programme } from '../models/programmes.model';
 
 @Component({
   selector: 'app-programme-editor',
@@ -19,7 +18,10 @@ export class ProgrammeEditorComponent implements OnInit{
     nombreJours: 0,
     exercices: [],
   };
-  programExercices!: Exercice[];
+
+
+  programExercices!: any[];
+  programExercicesForDisplay!: Exercice[];
   allExercices!: Exercice[];
   allProgrammes!: Program[];
 
@@ -28,7 +30,18 @@ export class ProgrammeEditorComponent implements OnInit{
               private router: Router) {}
 
   ngOnInit(): void {
-    console.log("hello")
+    this.programExercices=[]
+    this.programExercicesForDisplay=[]
+    
+    //init Form
+    this.form = new FormGroup({
+      nomProgramme: new FormControl(),
+      nombreJours: new FormControl(),
+      selectorExercice: new FormControl(),
+      nombreRepetition: new FormControl(),
+    });
+
+
     this.exerciceService.getAll().subscribe(
       (exercices: Exercice[]) => {
         this.allExercices = exercices;
@@ -45,15 +58,40 @@ export class ProgrammeEditorComponent implements OnInit{
         console.log(error);
       }
     );
-    console.log(this.allProgrammes)
   }
+
+  deleteProgramme(id:any){
+    this.programService.deleteProgram(id).subscribe(() =>{
+      this.allProgrammes = this.allProgrammes.filter(p => p.id !==id);
+    })
+  }
+
+
+
+  submitProgramme() {
+    console.log("submitProgramme click")
+    let programmeJson = {
+      nom: this.form.get('nomProgramme')?.value,
+      nombreJours: this.form.get('nombreJours')?.value,
+      exercices: this.programExercices
+    };
+    this.programService.create(programmeJson).subscribe((programme) => {
+      console.debug(programme);
+      window.location.reload();
+    });
+  }
+
   addExercice(){
-  }
+    console.log("addExercice click")
 
-  onSubmitProgramme() {
-    
-  }
+    this.exerciceService.getById((this.form.get("selectorExercice")?.value).id).subscribe((exo) => {
+      // console.log(exo)
+      this.programExercices.push({id:{exercice:exo},repetition:this.form.get("nombreRepetition")?.value});
+      this.programExercicesForDisplay.push(exo);
+    });
 
+    console.log(this.programExercices)
+  }
 
 
 }

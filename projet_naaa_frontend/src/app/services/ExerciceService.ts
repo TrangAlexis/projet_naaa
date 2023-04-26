@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Exercice } from '../models/exercise.model';
+import { Exercise } from '../models/exerciceClass.model';
 
 @Injectable({
   providedIn: 'root',

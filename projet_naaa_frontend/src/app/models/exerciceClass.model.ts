@@ -1,4 +1,4 @@
-export class Exercice {
+export class Exercise {
   id?: number;
   constructor(
     public nom: string,

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ajc.formation.soprasteria.appliSport.entities.Exercice;
 import ajc.formation.soprasteria.appliSport.services.ExerciceServices;
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import ajc.formation.soprasteria.appliSport.exceptions.ExerciceException;
 
 @RestController
 @RequestMapping("/api/exercice")
@@ -36,16 +37,16 @@ public class ExerciceRestController {
 		return exerciceSrv.findAll();
 	}
 	
-//	@GetMapping("/{id}")
-//	public Exercice getById(@PathVariable Long id) {
-//		Exercice exercice = null;
-//		try {
-//			exercice = exerciceSrv.findById(id);
-//		} catch (ExerciceException ex) {
-//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-//		}
-//		return exercice;
-//	}
+	@GetMapping("/{id}")
+	public Exercice getById(@PathVariable Long id) {
+		Exercice exercice = null;
+		try {
+			exercice = exerciceSrv.findById(id);
+		} catch (ExerciceException ex) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		return exercice;
+	}
 	
 	@PostMapping({"", "/ajouter"})
 	@ResponseStatus(code = HttpStatus.CREATED)
