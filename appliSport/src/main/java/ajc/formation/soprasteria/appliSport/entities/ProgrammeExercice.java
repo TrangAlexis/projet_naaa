@@ -15,6 +15,8 @@ import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 @Entity
 @Table(name="programme_exercice")
 public class ProgrammeExercice {
+
+
 	@EmbeddedId
 	@JsonView({JsonViews.Simple.class,JsonViews.Programme.class})
 	private ProgrammeExerciceId id;

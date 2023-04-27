@@ -3,8 +3,12 @@ package ajc.formation.soprasteria.appliSport.entities;
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
