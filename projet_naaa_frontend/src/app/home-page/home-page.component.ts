@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    sessionStorage.setItem("pp",'/assets/images/LicorneNAAA.png')
     this.food = new Section(
       'La recette du jour',
       'Lundi 29 Novembre',

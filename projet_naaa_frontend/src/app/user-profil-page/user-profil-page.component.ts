@@ -40,7 +40,13 @@ export class UserProfilPageComponent implements OnInit {
             .subscribe((client: any) => {
               this.client = client;
               this.points = this.client.pointsDeSucces;
-              this.typeCompte="Client"
+              console.log(this.user.role)
+              if (this.user.role=="ROLE_CLIENTFREEMIUM"){
+                this.typeCompte="Client Freemium"
+              } else {
+                this.typeCompte="Client Premium"
+              }
+              
             });
         }
       }

@@ -18,7 +18,7 @@ export class ProfilEditorComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
-  selectedImage: any= undefined;
+  selectedImage: any= { src: '/assets/images/quadrillage.jpg', alt: 'Image 1' };
 
   mdpForm!: FormGroup;
   submitted = false;
@@ -42,6 +42,7 @@ export class ProfilEditorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(sessionStorage)
     if (this.authService.authenticated) {
       this.user = JSON.parse(sessionStorage.getItem('user')!);
       this.login = this.user.login;
@@ -187,6 +188,7 @@ export class ProfilEditorComponent implements OnInit {
   selectImage(image: any) {
     this.selectedImage = image;
     this.avatarForm.controls['newAvatar'].setValue(this.selectedImage.src);
+  
   }
 
 

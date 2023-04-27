@@ -33,6 +33,7 @@ export class InscriptionComponent implements OnInit {
       this.inscriptionForm.controls['nom'].setValue(value);
     });
     this.inscriptionForm.controls['avatar'].setValue('/assets/images/cuisine.jpg');
+    
   }
 
   get f() { return this.inscriptionForm.controls; }

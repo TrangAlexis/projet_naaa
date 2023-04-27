@@ -10,7 +10,7 @@
                 <li *ngFor="let exercice of exercices; let i=index" class="flex my-3 items-center justify-between">
                   <div>
                     <p class="font-bold">{{ exercice.id.exercice.nom }}</p>
-                    <p> {{ exercice.repetition }} répétitions ({{ exercice.id.exercice.nom }}pts.)</p>
+                    <p> {{ exercice.repetition }} répétitions ({{ exercice.id.exercice.points }}pts.)</p>
 
                   </div>
                   <button [disabled]="buttonIsDone(i)"
