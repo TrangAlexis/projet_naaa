@@ -19,9 +19,26 @@ public class ProgrammeExerciceId implements Serializable{
 	@JsonView({JsonViews.Programme.class})
 	@JoinColumn(name="programme_exercice_id_exercice", foreignKey = @ForeignKey(name="programme_exercice_id_exercice_fk"))
 	private Exercice exercice;
-	
+	@JsonView({JsonViews.Programme.class})
+	private Integer position;
+
+	public Integer getPosition() {
+		return position;
+	}
+
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
+
 	public ProgrammeExerciceId() {
 	}
+
+	public ProgrammeExerciceId(Programme programme, Exercice exercice, Integer position) {
+		this.programme = programme;
+		this.exercice = exercice;
+		this.position = position;
+	}
+
 	public ProgrammeExerciceId(Programme programme, Exercice exercice) {
 		this.programme = programme;
 		this.exercice = exercice;
