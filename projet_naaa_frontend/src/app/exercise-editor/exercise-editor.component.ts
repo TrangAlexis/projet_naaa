@@ -24,6 +24,8 @@ export class ExerciseEditorComponent implements OnInit {
     this.exerciceService.getAll().subscribe(
       (exercices: Exercice[]) => {
         this.exercices = exercices;
+        console.log(exercices);
+
       },
       (error) => {
         console.log(error);
