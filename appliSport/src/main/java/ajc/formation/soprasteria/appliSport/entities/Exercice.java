@@ -31,6 +31,9 @@ public class Exercice {
 	@Lob // Big stockage de donnée (ici text) dans uen colonne de bdd
 	@JsonView({JsonViews.Simple.class,JsonViews.Programme.class})
 	private String description;
+	@Column(name="points")
+	@JsonView({JsonViews.Simple.class,JsonViews.Programme.class})
+	private Long points=0L;
 	
 //	
 //	@Transient
@@ -46,6 +49,22 @@ public class Exercice {
 		super();
 		this.nom = nom;
 		this.description = description;
+	}
+	
+	public Exercice(@NotBlank String nom, String description, Long points) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.points = points;
+	}
+
+	
+	public Long getPoints() {
+		return points;
+	}
+
+	public void setPoints(Long points) {
+		this.points = points;
 	}
 
 	public Long getId() {

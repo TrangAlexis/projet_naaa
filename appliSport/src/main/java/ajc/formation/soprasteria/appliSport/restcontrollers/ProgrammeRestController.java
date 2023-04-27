@@ -60,6 +60,12 @@ public class ProgrammeRestController {
 	public List<Programme> getAll(){
 		return programmeSrv.findAll();
 	}
+	
+	@GetMapping("/{id}")
+	@JsonView(JsonViews.Programme.class)
+	public Programme getbyId(@PathVariable Long id){
+		return programmeSrv.findById(id);
+	}
 
 
 	@PostMapping("/ajouter")

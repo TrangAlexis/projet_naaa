@@ -14,7 +14,7 @@ export class HelloUserComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
-  points: number =20;
+  points: number = 0;
   level!:string;
 
 
@@ -25,26 +25,32 @@ export class HelloUserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     if (this.authService.authenticated) {
+      
       this.user = JSON.parse(sessionStorage.getItem('user')!);
       this.login = this.user.login;
       if (this.user.role === 'ROLE_COACH') {
         this.coachService.getCoachByNom(this.login).subscribe((coach: any) => {
           this.client = coach;
+          this.points= this.client.pointsDeSucces;
         });
+
       } else {
         this.clientService
           .getClientByNom(this.login)
           .subscribe((client: any) => {
             this.client = client;
+            this.points= this.client.pointsDeSucces;
           });
       }
     }
+    
   }
 
   passerDesLevels(){
     switch(true){
-      case (this.points < 0 || this.points > 100):
+      case (this.points < 0):
         return this.level = "Score invalide";
       break;
       case (this.points < 50):
@@ -59,6 +65,7 @@ export class HelloUserComponent implements OnInit {
       default:
         return this.level = "Niveau 1";
       break;
+      
     }
   }
 

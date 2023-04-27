@@ -1,0 +1,25 @@
+<div class="min-h-screen flex flex-col justify-center sm:px-6 lg:px-8">
+    <h3
+    class="font-bold text-lg tracking-widest uppercase text-center text-white mb-4"
+  >
+    ENTRAINEMENT
+  </h3>
+    <div class="mt-8 w-full md:w-[700px] rounded-xl ml-auto mr-auto">
+        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 rounded-xl">
+            <ul class="mx-14">
+                <li *ngFor="let exercice of exercices; let i=index" class="flex my-3 items-center justify-between">
+                  <div>
+                    <p class="font-bold">{{ exercice.id.exercice.nom }}</p>
+                    <p> {{ exercice.repetition }} répétitions ({{ exercice.id.exercice.nom }}pts.)</p>
+
+                  </div>
+                  <button [disabled]="buttonIsDone(i)"
+                  (click)="exerciseDone(exercice.id.exercice.points,i)"
+                  class="bg-green-500 text-white px-[8px] rounded-full pb-1 disabled:bg-gray-300"
+                  >Finit {{i}}</button>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
+<app-navbar></app-navbar>

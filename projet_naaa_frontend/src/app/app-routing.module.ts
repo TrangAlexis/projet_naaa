@@ -16,6 +16,7 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
 import { AuthGuardServiceTwo } from './services/AuthGuardServiceTwo';
+import { EntrainementComponent } from './entrainement/entrainement.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, canActivate: [AuthGuardServiceTwo]},
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'inscription-coach', component: InscriptionCoachComponent},
   { path: 'subscribe', component: SubscribeComponent, canActivate: [AuthGuardService] },
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuardService] },
-  { path: 'profil-editor', component: ProfilEditorComponent, canActivate: [AuthGuardService] }
+  { path: 'profil-editor', component: ProfilEditorComponent, canActivate: [AuthGuardService] },
+  { path: 'entrainement', component: EntrainementComponent}
 ];
 
 @NgModule({

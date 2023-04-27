@@ -2,6 +2,7 @@ export class Exercise {
   id?: number;
   constructor(
     public nom: string,
-    public description: string) {
+    public description: string,
+    public points: number) {
   }
 }

@@ -13,6 +13,7 @@ export class ExerciseEditorComponent implements OnInit {
   exercice: Exercice = {
     nom: '',
     description: '',
+    points: 0,
   };
 
   exercices!: Exercice[];

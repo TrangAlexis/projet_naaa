@@ -62,14 +62,15 @@ export class ProgrammeEditorComponent implements OnInit{
 
   deleteProgramme(id:any){
     this.programService.deleteProgram(id).subscribe(() =>{
-      this.allProgrammes = this.allProgrammes.filter(p => p.id !==id);
+      // this.allProgrammes = this.allProgrammes.filter(p => p.id !==id);
+      window.location.reload();
     })
   }
 
 
 
   submitProgramme() {
-    console.log("submitProgramme click")
+    // console.log("submitProgramme click")
     let programmeJson = {
       nom: this.form.get('nomProgramme')?.value,
       nombreJours: this.form.get('nombreJours')?.value,
@@ -82,7 +83,7 @@ export class ProgrammeEditorComponent implements OnInit{
   }
 
   addExercice(){
-    console.log("addExercice click")
+    // console.log("addExercice click")
 
     this.exerciceService.getById((this.form.get("selectorExercice")?.value).id).subscribe((exo) => {
       // console.log(exo)

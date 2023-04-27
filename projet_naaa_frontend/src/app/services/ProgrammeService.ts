@@ -14,7 +14,7 @@ export class ProgrammeService {
   getAll(): Observable<Program[]> {
     return this.http.get<Program[]>(this.apiUrl);
   }
-  getById(id: string): Observable<Program> {
+  getById(id: number): Observable<Program> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Program>(url);
   }

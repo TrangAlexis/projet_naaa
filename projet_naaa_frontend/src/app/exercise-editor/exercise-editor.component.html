@@ -53,6 +53,26 @@
           </div>
         </div>
 
+        <div>
+          <label
+            for="exercisePoints"
+            class="block text-sm font-medium text-gray-700"
+          >
+          Points
+          </label>
+          <div class="mt-1">
+            <input
+              id="exercisePoints"
+              name="exercisePoints"
+              type="text"
+              autocomplete="off"
+              required
+              [(ngModel)]="exercice.points"
+              class="appearance-none px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
         <div class="flex flex-col gap-4">
           <button
             type="submit"
@@ -77,7 +97,7 @@
     <ul class="mx-14">
       <li *ngFor="let exercice of exercices" class="flex my-3 items-center justify-between">
         <div>
-          <p class="font-bold">{{ exercice.nom }}</p>
+          <p class="font-bold">{{ exercice.nom }} ({{ exercice.points }}pts.)</p>
           <p>{{ exercice.description }}</p>
         </div>
         <button class="bg-red-500 text-white font-bold px-[8px] rounded-full pb-1"

@@ -28,6 +28,8 @@ import { ProgrammeEditorComponent } from './programme-editor/programme-editor.co
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
+import { ProgrammeDuMomentComponent } from './programme-du-moment/programme-du-moment.component';
+import { EntrainementComponent } from './entrainement/entrainement.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ProfilEditorComponent } from './profil-editor/profil-editor.component';
     SubscribeComponent,
     PaymentComponent,
     ProfilEditorComponent,
+    ProgrammeDuMomentComponent,
+    EntrainementComponent,
   ],
   imports: [
     BrowserModule,

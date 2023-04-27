@@ -14,9 +14,10 @@ export class UserProfilPageComponent implements OnInit {
   login: any = undefined;
   client: any = undefined;
 
+  typeCompte="";
 
 
-  points: number =20;
+  points: number =0;
   level!:string;
 
   constructor(private authService: AuthService, private router: Router,
@@ -30,12 +31,16 @@ export class UserProfilPageComponent implements OnInit {
         if (this.user.role === 'ROLE_COACH') {
           this.coachService.getCoachByNom(this.login).subscribe((coach: any) => {
             this.client = coach;
+            this.points = this.client.pointsDeSucces;
+            this.typeCompte="Coach"
           });
         } else {
           this.clientService
             .getClientByNom(this.login)
             .subscribe((client: any) => {
               this.client = client;
+              this.points = this.client.pointsDeSucces;
+              this.typeCompte="Client"
             });
         }
       }
@@ -49,7 +54,7 @@ export class UserProfilPageComponent implements OnInit {
 
   passerDesLevels(){
     switch(true){
-      case (this.points < 0 || this.points > 100):
+      case (this.points < 0):
         return this.level = "Score invalide";
       break;
       case (this.points < 50):
