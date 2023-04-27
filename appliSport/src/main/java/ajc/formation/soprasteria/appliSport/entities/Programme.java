@@ -1,27 +1,20 @@
 package ajc.formation.soprasteria.appliSport.entities;
 
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.soprasteria.appliSport.entities.jsonviews.JsonViews;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
@@ -38,9 +31,10 @@ public class Programme {
 	@Column(name="programme_duree")
 	@JsonView(JsonViews.Programme.class)
 	private Integer nombreJours;
-	@OneToMany(mappedBy = "id.programme")
+	@OneToMany(mappedBy = "id.programme", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("position")
 	@JsonView(JsonViews.Programme.class)
-	private Set<ProgrammeExercice> exercices;
+	private List<ProgrammeExercice> exercices = new ArrayList<>();
 	@OneToMany(mappedBy = "programme")
 	private Set<Client> clientDansProgramme;
 	@Transient
@@ -52,7 +46,7 @@ public class Programme {
 		
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
+	public Programme(String nom, Integer nombreJours, List<ProgrammeExercice> exercices, Set<Client> clientDansProgramme,
 			List<Client> clientTermineProgramme) {
 		super();
 		this.nom = nom;
@@ -62,7 +56,7 @@ public class Programme {
 		this.clientTermineProgramme = clientTermineProgramme;
 	}
 
-	public Programme(String nom, Integer nombreJours, Set<ProgrammeExercice> exercices) {
+	public Programme(String nom, Integer nombreJours, List<ProgrammeExercice> exercices) {
 		this.nom = nom;
 		this.nombreJours = nombreJours;
 		this.exercices = exercices;
@@ -93,11 +87,11 @@ public class Programme {
 		this.nom = nom;
 	}
 
-	public Set<ProgrammeExercice> getExercices() {
+	public List<ProgrammeExercice> getExercices() {
 		return exercices;
 	}
 
-	public void setExercices(Set<ProgrammeExercice> exercices) {
+	public void setExercices(List<ProgrammeExercice> exercices) {
 		this.exercices = exercices;
 	}
 

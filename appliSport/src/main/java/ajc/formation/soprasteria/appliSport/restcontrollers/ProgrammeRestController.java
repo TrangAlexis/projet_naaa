@@ -1,5 +1,6 @@
 package ajc.formation.soprasteria.appliSport.restcontrollers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -61,8 +62,6 @@ public class ProgrammeRestController {
 	}
 
 
-
-
 	@PostMapping("/ajouter")
 	@JsonView(JsonViews.Simple.class)
 	public Programme create(@Valid @RequestBody Programme programme, BindingResult result) {
@@ -70,19 +69,26 @@ public class ProgrammeRestController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid Programme data", (Throwable) result.getAllErrors());
 		}
 
-		Set<ProgrammeExercice> programmeExercices = new HashSet<>();
-		for (ProgrammeExercice programmeExercice : programme.getExercices()) {
-			Exercice exercice = exerciceServices.findById(programmeExercice.getId().getExercice().getId());
-			ProgrammeExercice newProgrammeExercice = new ProgrammeExercice();
-			newProgrammeExercice.setId(new ProgrammeExerciceId(programme, exercice));
-			newProgrammeExercice.setRepetition(programmeExercice.getRepetition());
-			programmeExercices.add(newProgrammeExercice);
+		List<ProgrammeExercice> programmeExercices = new ArrayList<>();
+		for (int i = 0; i < programme.getExercices().size(); i++) {
+			ProgrammeExerciceId exerciceId = programme.getExercices().get(i).getId();
+			Exercice exercice = exerciceServices.findById(exerciceId.getExercice().getId());
+			ProgrammeExercice programmeExercice = new ProgrammeExercice();
+			programmeExercice.setId(new ProgrammeExerciceId(programme, exercice, i));
+			programmeExercice.setRepetition(programme.getExercices().get(i).getRepetition());
+			programmeExercices.add(programmeExercice);
 		}
 		programme.setExercices(programmeExercices);
 
 		programmeSrv.create(programme);
 		return programme;
 	}
+
+
+
+
+
+
 
 
 
