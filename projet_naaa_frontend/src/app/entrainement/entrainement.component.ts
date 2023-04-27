@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Exercice } from '../models/exercise.model';
 import { ClientService } from '../services/ClientService';
 import { Client } from '../models/client.model';
+import { CoachService } from '../services/CoachService';
 
 @Component({
   selector: 'app-entrainement',
@@ -30,23 +31,24 @@ export class EntrainementComponent implements OnInit{
   constructor(
     private programService: ProgrammeService,
     private clientService: ClientService,
+    private coachService: CoachService,
     private router: Router) {}
 
   ngOnInit(): void {
 
     
-    // -------Chose the programme here-----
-    this.programService.getById(2).subscribe((prog) => {
-    // ------------------------------------
-      this.programme=prog;
+    this.programService.getAll().subscribe((progs) => {
+      this.programme=progs[0]
+      this.exercices=this.programme.exercices
+    })
 
       // console.log("PROGRAMME");
       // console.log(this.programme)
-      this.exercices=this.programme.exercices
+      
   
       // console.log("EXERCICES")
       // console.log(this.exercices)
-    })
+
 
   };
 
@@ -59,17 +61,25 @@ export class EntrainementComponent implements OnInit{
     // console.log(points)
     this.userSession = JSON.parse(sessionStorage.getItem("user")!)
     // console.log(this.userSession.login)
-
-    this.clientService.getClientByNom(this.userSession.login).subscribe((client:any)=>{
+    console.log(this.userSession)
+    if(this.userSession.role=='ROLE_COACH'){
+      this.coachService.getCoachByNom(this.userSession.login).subscribe((coach:any)=>{
+        console.log(coach)
+        coach.pointsDeSucces+=points;
+        console.log(coach.pointsDeSucces)
+        this.coachService.updateCoach(coach.nom,coach).subscribe(()=>{
+        })
+      })
+    }else{this.clientService.getClientByNom(this.userSession.login).subscribe((client:any)=>{
       console.log(client)
       client.pointsDeSucces+=points;
       console.log(client.pointsDeSucces)
       this.clientService.updateClient(client.nom,client).subscribe(()=>{
-        // window.location.reload()
-
-
       })
     })
+
+    }
+
     
   };
 }

@@ -24,10 +24,10 @@ export class ProgrammeDuMomentComponent implements OnInit{
 
     
     // -------Chose the programme here-----
-    this.programService.getById(2).subscribe((prog) => {
-    // ------------------------------------
-      this.programme=prog;
+    this.programService.getAll().subscribe((progs) => {
+      this.programme=progs[0]
     })
+
   }
 
   startTraining(){
